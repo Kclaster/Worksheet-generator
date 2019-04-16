@@ -4,6 +4,18 @@ import NavBar from './components/Features/NavBar/NavBar.js'
 import Footer from './components/Features/Footer/Footer.js'
 
 class App extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            displayUserPage: false,
+        }
+    }
+
+ 
+    handleClick= ()=> {
+        this.setState({ displayUserPage: !this.state.displayUserPage })
+    }
+    
     render() {
         return (
             <div>
@@ -11,18 +23,12 @@ class App extends React.Component {
                     <NavBar />
                     <MainPages />
                 </div>
-
                 <footer>
-
                     <Footer />
-
                 </footer>
-
             </div>
         )
     }
 }
-
-
 
 export default App;
