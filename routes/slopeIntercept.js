@@ -31,6 +31,24 @@ router.get('/random', function(req, res) {
   );
 });
 
+router.post('/b+mx=y', function(req, res) {
+  let sql =
+    'INSERT INTO slope_intercept_list(question, answer, max, min) VALUES ?';
+  connection.query(sql, [slope_intercept_questions], function(err) {
+    if (err) throw err;
+    connection.end();
+  });
+});
+
+router.post('/mx+b=y', function(req, res) {
+  let sql =
+    'INSERT INTO slope_intercept_list(question, answer, max, min) VALUES ?';
+  connection.query(sql, [slope_intercept_questions], function(err) {
+    if (err) throw err;
+    connection.end();
+  });
+});
+
 router.post('/', function(req, res) {
   let sql =
     'INSERT INTO slope_intercept_list(question, answer, max, min) VALUES ?';
