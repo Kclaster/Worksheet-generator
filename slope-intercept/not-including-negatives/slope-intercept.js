@@ -26,7 +26,9 @@ const slopeIntercept = (min_size, max_size) => {
     b = min_size;
     m++;
   }
-  console.log(equation);
+  return equation;
 };
 
-slopeIntercept(1, 10);
+slopeIntercept(-200, 200);
+
+module.exports = slopeIntercept(-200, 200);
