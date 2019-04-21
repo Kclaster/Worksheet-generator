@@ -28,18 +28,10 @@ router.get('/', function(req, res) {
 // });
 
 router.post('/', function(req, res) {
-  slope_intercept_questions.foreach(cur => {
-    connection.query(
-      `INSERT INTO slope_intercept_list(question, answer)VALUE("${cur[0]}", "${
-        cur[1]
-      }")`,
-      function(error, results, fields) {
-        if (error) throw error;
-        else {
-          console.log('post made');
-        }
-      }
-    );
+  let sql = 'INSERT INTO slope_intercept_list(question, answer) VALUES ?';
+  connection.query(sql, [slope_intercept_questions], function(err) {
+    if (err) throw err;
+    connection.end();
   });
 });
 
