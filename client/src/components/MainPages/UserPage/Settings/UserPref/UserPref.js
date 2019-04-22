@@ -24,6 +24,26 @@ class UserPref extends React.Component {
         console.log(name)
     };
 
+    // handleSubmit = event => {
+    //     event.preventDefault();
+    //     let userid = this.props.userid;
+    //     let { userName, userEmail, teachingLevel, numberOfStudents } = this.state;
+    //     let post = {
+    //       userid,
+    //       userName,
+    //       userEmail,
+    //       teachingLevel,
+    //       numberOfStudents
+    //     };
+    //     this.props.updateUserPref(post);
+    //     saveUserPref(post);
+    //     this.setState({
+    //         userName: '',
+    //         userEmail: '',
+    //         teachingLevel: 0,
+    //         numberOfStudents: 0,
+    //     });
+    //   };
 
 
     render() {
