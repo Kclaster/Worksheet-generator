@@ -1,5 +1,5 @@
 import React from 'react';
-// import Login from './Login/Login.js'
+import Login from './Login/Login.js'
 import './index.css'
 
 
@@ -19,6 +19,7 @@ class NavBar extends React.Component {
               <ul className="header">
                 <li><a href="/">Home</a></li>
                 <li><a href="/user">User Page</a></li>
+                <li><Login /></li>
 
               </ul>
             </div>
