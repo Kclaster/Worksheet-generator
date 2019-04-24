@@ -6,6 +6,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var standardFormRouter = require('./routes/standardForm');
+var slopeInterceptRouter = require('./routes/slopeIntercept');
 
 var app = express();
 
