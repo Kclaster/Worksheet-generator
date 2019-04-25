@@ -11,10 +11,7 @@ const slope_intercept_questionsf = require('../slope-intercept/including-negativ
 var app = express();
 
 router.get('/', function(req, res) {
-  connection.query('SELECT * FROM slope_intercept_list', function(
-    req,
-    results
-  ) {
+  connection.query('SELECT * FROM slope_intercept', function(req, results) {
     if (results) {
       res.json(results);
     }
@@ -27,25 +24,38 @@ router.get('/y=mx+b', function(req, res) {
   let max = body.max;
   let min = body.min;
   connection.query(
-    'SELECT * FROM slope_intercept_list WHERE max <= ? AND min >= ?',
+    'SELECT * FROM slope_intercept WHERE max <= ? AND min >= ?',
     [max, min],
     function(req, results) {
       if (results) {
-        res.json(results);
+        length = results.length;
+        questionArr = [];
+        results.forEach((cur, index) => {
+          var min = 0;
+          var max = length;
+          var random = Math.floor(Math.random() * (+max - +min)) + +min;
+          document.write('Random Number Generated : ' + random);
+          length--;
+          if (index === random) {
+            questionArr.push(cur);
+          }
+        });
+        res.json(questionArr);
       }
     }
   );
 });
 
 // Generate the equations to fill the database
-//doesn't include negatives
-router.post('/y=mx+b', function(req, res) {
+router.post('/', function(req, res) {
+  console.log('akuna');
   let sql = 'INSERT INTO slope_intercept(question, answer, max, min) VALUES ?';
   connection.query(sql, [slope_intercept_questions], function(err) {
     if (err) throw err;
     connection.end();
   });
 });
+//doesn't include negatives
 
 router.post('/b+mx=y', function(req, res) {
   let sql = 'INSERT INTO b+mx=y(question, answer, max, min) VALUES ?';
