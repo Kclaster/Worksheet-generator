@@ -18,10 +18,10 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <div>
+        <section>
           <NavBar />
           <MainPages />
-        </div>
+        </section>
         <footer>
           <Footer />
         </footer>

@@ -47,6 +47,4 @@ const slopeIntercept = (min_size, max_size) => {
 
 };
 
-slopeIntercept(1, 10);
-
 module.exports = slopeIntercept(-50, 50);
