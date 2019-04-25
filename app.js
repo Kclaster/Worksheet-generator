@@ -5,7 +5,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var standardFormRouter = require('./routes/standardForm');
+// var standardFormRouter = require('./routes/standardForm');
+var slopeInterceptRouter = require('./routes/slopeIntercept');
 
 var app = express();
 
@@ -24,7 +25,7 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.use('/', indexRouter);
 app.use('/slope_intercept', slopeInterceptRouter);
-app.use('/standard_form', standardFormRouter);
+// app.use('/standard_form', standardFormRouter);
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname + '/client/build/index.html'));
