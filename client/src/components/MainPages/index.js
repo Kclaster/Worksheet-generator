@@ -19,10 +19,10 @@ class MainPage extends React.Component {
     return (
       <div>
         <div>
-          <button onClick={this.handleClick}>User Home Page</button>
+          <button type= "submit" onClick={this.handleClick}>Login</button>
         </div>
 
-        {this.state.displayUserPage ? <HomePage /> : <UserPage />}
+        {this.state.displayUserPage ? <UserPage /> : <HomePage />}
       </div>
     );
   }

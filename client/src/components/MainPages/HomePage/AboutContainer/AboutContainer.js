@@ -3,7 +3,7 @@ import './AboutContainer.css'
 
 class AboutContainer extends React.Component{
     render(){
-        return <div className="About">This is the about container</div>
+        return <div className="About">Please login to continue to the Worksheet Generator App</div>
     }
 }
 

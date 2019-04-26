@@ -46,10 +46,7 @@ const slopeIntercept = (min_size, max_size) => {
 
   return equation;
 
-<<<<<<< HEAD
 };
 slopeIntercept(1, 10);
 
-=======
->>>>>>> 7c00997c1e211eb2fe2c188b8e91965c29d22526
 module.exports = slopeIntercept(-50, 50);

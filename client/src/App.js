@@ -2,6 +2,7 @@ import React from "react";
 import MainPages from "./components/MainPages";
 import NavBar from "./components/Features/NavBar/NavBar.js";
 import Footer from "./components/Features/Footer/Footer.js";
+import Login from "./components/Features/NavBar/Login/Login"
 
 class App extends React.Component {
   constructor() {
@@ -19,8 +20,8 @@ class App extends React.Component {
     return (
       <div>
         <section>
-          <NavBar />
-          <MainPages />
+          <Login />
+          
         </section>
         <footer>
           <Footer />
