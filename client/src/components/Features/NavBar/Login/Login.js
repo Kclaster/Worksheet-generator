@@ -1,3 +1,5 @@
+//Needs to connect to userpage/index.js
+
 import React from "react";
 import "./Login.css";
 import MainPages from "../../../MainPages";
@@ -16,7 +18,7 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div className = "loginbox">
+      <div className="loginbox">
         <form action="/login" method="post">
           <div class="form-group">
             <label>Email</label>
@@ -28,17 +30,10 @@ class Login extends React.Component {
             <br />
             <input type="text" class="form-control" name="password" />
           </div>
-
-          {/* <button
-            type="submit"
-            class="btn btn-succcess btn-lg"
-            onclick={this.handleClick}
-          >
-            Login
-          </button> */}
         </form>
         <div>{this.state.displayUserPage ? <Login /> : <MainPages />}</div>
       </div>
+      
     );
   }
 }

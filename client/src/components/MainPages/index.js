@@ -1,13 +1,16 @@
+// LOGIN BUTTON need to attach to login.js under NAVBAR
+
+
 import React from "react";
 import HomePage from "./HomePage/homePage.js";
 import UserPage from "./UserPage";
 import "./index.css";
 
-class MainPage extends React.Component {
+class LoginButton extends React.Component {
   constructor() {
     super();
     this.state = {
-      displayUserPage: false
+      displayUserPage: false,
     };
   }
 
@@ -19,7 +22,7 @@ class MainPage extends React.Component {
     return (
       <div>
         <div>
-          <button type= "submit" onClick={this.handleClick}>Login</button>
+          <button type= "submit" onClick={this.handleClick}>Login Button</button>
         </div>
 
         {this.state.displayUserPage ? <UserPage /> : <HomePage />}
@@ -28,4 +31,4 @@ class MainPage extends React.Component {
   }
 }
 
-export default MainPage;
+export default LoginButton;
