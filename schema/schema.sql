@@ -2,7 +2,7 @@ DROP DATABASE IF EXISTS `slope_intercept`;
 CREATE DATABASE `slope_intercept`;
 USE `slope_intercept`;
 
-CREATE TABLE `slope_intercept` (
+CREATE TABLE `slope_intercept_positive` (
   `id` bigint(60) NOT NULL AUTO_INCREMENT,
   `question` varchar(50) NOT NULL,
   `answer` varchar(40) NOT NULL,
@@ -11,7 +11,7 @@ CREATE TABLE `slope_intercept` (
   PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `mx+b=y` (
+CREATE TABLE `slope_intercept_negative` (
   `id` bigint(60) NOT NULL AUTO_INCREMENT,
   `question` varchar(50) NOT NULL,
   `answer` varchar(40) NOT NULL,
@@ -20,7 +20,7 @@ CREATE TABLE `mx+b=y` (
   PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `b+mx=y` (
+CREATE TABLE `slope_intercept_both` (
   `id` bigint(60) NOT NULL AUTO_INCREMENT,
   `question` varchar(50) NOT NULL,
   `answer` varchar(40) NOT NULL,
@@ -30,7 +30,16 @@ CREATE TABLE `b+mx=y` (
 );
 
 
-CREATE TABLE `mx=y-b` (
+CREATE TABLE `standard_form_positive` (
+  `id` bigint(60) NOT NULL AUTO_INCREMENT,
+  `question` varchar(50) NOT NULL,
+  `answer` varchar(40) NOT NULL,
+  `max` integer(10) NOT NULL,
+  `min` integer(10) NOT NUll,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `standard_form_negative` (
   `id` bigint(60) NOT NULL AUTO_INCREMENT,
   `question` varchar(50) NOT NULL,
   `answer` varchar(40) NOT NULL,
@@ -39,7 +48,7 @@ CREATE TABLE `mx=y-b` (
   PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `negb+y=mx` (
+CREATE TABLE `standard_form_both` (
   `id` bigint(60) NOT NULL AUTO_INCREMENT,
   `question` varchar(50) NOT NULL,
   `answer` varchar(40) NOT NULL,
@@ -48,56 +57,3 @@ CREATE TABLE `negb+y=mx` (
   PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `negmx=b-y` (
-  `id` bigint(60) NOT NULL AUTO_INCREMENT,
-  `question` varchar(50) NOT NULL,
-  `answer` varchar(40) NOT NULL,
-  `max` integer(100) NOT NULL,
-  `min` integer(100) NOT NUll,
-  PRIMARY KEY (`id`)
-);
-
-CREATE TABLE `y-b=mx` (
-  `id` bigint(60) NOT NULL AUTO_INCREMENT,
-  `question` varchar(50) NOT NULL,
-  `answer` varchar(40) NOT NULL,
-  `max` integer(100) NOT NULL,
-  `min` integer(100) NOT NUll,
-  PRIMARY KEY (`id`)
-);
-
-CREATE TABLE `ax=-by+c` (
-  `id` bigint(60) NOT NULL AUTO_INCREMENT,
-  `question` varchar(50) NOT NULL,
-  `answer` varchar(40) NOT NULL,
-  `max` integer(100) NOT NULL,
-  `min` integer(100) NOT NUll,
-  PRIMARY KEY (`id`)
-);
-
-CREATE TABLE `ax=c-by` (
-  `id` bigint(60) NOT NULL AUTO_INCREMENT,
-  `question` varchar(50) NOT NULL,
-  `answer` varchar(40) NOT NULL,
-  `max` integer(100) NOT NULL,
-  `min` integer(100) NOT NUll,
-  PRIMARY KEY (`id`)
-);
-
-CREATE TABLE `c=ax+by` (
-  `id` bigint(60) NOT NULL AUTO_INCREMENT,
-  `question` varchar(50) NOT NULL,
-  `answer` varchar(40) NOT NULL,
-  `max` integer(100) NOT NULL,
-  `min` integer(100) NOT NUll,
-  PRIMARY KEY (`id`)
-);
-
-CREATE TABLE `standard-form` (
-  `id` bigint(60) NOT NULL AUTO_INCREMENT,
-  `question` varchar(50) NOT NULL,
-  `answer` varchar(40) NOT NULL,
-  `max` integer(100) NOT NULL,
-  `min` integer(100) NOT NUll,
-  PRIMARY KEY (`id`)
-);

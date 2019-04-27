@@ -1,19 +1,35 @@
-import React from 'react';
-import Login from './Login/Login.js'
-import './index.css'
+import React from "react";
+import Login from "./Login/Login.js";
+import "./index.css";
+import AboutContainer from "../../MainPages/HomePage/AboutContainer/AboutContainer";
+import HomePage from "../../MainPages/HomePage/homePage.js";
 
+class NavBar extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      displayUserPage: false
+    };
+  }
 
-
-class NavBar extends React.Component{
-    render(){
-        return (
-            <div className='NavBar'>
-            This is the NavBar Main
+  render() {
+    return (
+      <div>
+        <section>
+          
+          <ul className ="header">
+            <li>
             <Login />
-            
-            </div>
-        )
-    }
+          </li>
+          </ul>
+        </section>
+
+        <section>
+          <HomePage />
+        </section>
+      </div>
+    );
+  }
 }
 
 export default NavBar;
