@@ -3,11 +3,9 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var bodyParser = require('body-parser');
 
 var indexRouter = require('./routes/index');
-
-var standardFormRouter = require('./routes/standardForm');
+// var standardFormRouter = require('./routes/standardForm');
 var slopeInterceptRouter = require('./routes/slopeIntercept');
 
 var app = express();
@@ -20,16 +18,14 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(bodyParser());
-
 // app.use(express.static(path.join(__dirname, 'public')));
 // Serve static files from the React frontend app
 app.use(express.static(path.join(__dirname, 'client/build')));
 // Anything that doesn't match the above, send back index.html
 
 app.use('/', indexRouter);
-//app.use('/slope_intercept', slopeInterceptRouter);
-//app.use('/standard_form', standardFormRouter);
+app.use('/slope_intercept', slopeInterceptRouter);
+// app.use('/standard_form', standardFormRouter);
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname + '/client/build/index.html'));
