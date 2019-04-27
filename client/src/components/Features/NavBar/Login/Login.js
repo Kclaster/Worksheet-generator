@@ -2,7 +2,10 @@
 
 import React from "react";
 import "./Login.css";
-import MainPages from "../../../MainPages";
+// import MainPages from "../../../MainPages";
+import HomePage from "../../../MainPages/HomePage/homePage";
+import UserPage from "../../../MainPages/UserPage"
+
 
 class Login extends React.Component {
   constructor() {
@@ -31,9 +34,14 @@ class Login extends React.Component {
             <input type="text" class="form-control" name="password" />
           </div>
         </form>
-        <div>{this.state.displayUserPage ? <Login /> : <MainPages />}</div>
+        <div>
+          <button type="submit" onClick={this.handleClick}>
+            Login Button
+          </button>
+        </div>
+
+        {this.state.displayUserPage ? <UserPage /> : <HomePage />}
       </div>
-      
     );
   }
 }
