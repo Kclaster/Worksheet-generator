@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var bodyParser = require('body-parser');
 
 var indexRouter = require('./routes/index');
 // var standardFormRouter = require('./routes/standardForm');
@@ -18,6 +19,8 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(bodyParser());
+
 // app.use(express.static(path.join(__dirname, 'public')));
 // Serve static files from the React frontend app
 app.use(express.static(path.join(__dirname, 'client/build')));
