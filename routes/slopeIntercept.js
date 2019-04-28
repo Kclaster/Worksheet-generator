@@ -35,15 +35,18 @@ router.get('/', function(req, res) {
   );
 });
 
-router.get('/one', function(req, res) {
-  let body = req.body;
-  let max = body.max;
-  let min = body.min;
+router.get('/one', async function(req, res) {
+  let query = req.query;
+  let max = Number(query.max);
+  let min = Number(query.min);
   connection.query(
     'SELECT * FROM slope_intercept_both WHERE max <= ? AND min >= ?',
     [max, min],
-    function(req, results) {
-      if (res) {
+    async function(error, results, fields) {
+      if (error) {
+        throw error;
+      }
+      if (results) {
         let rando = Math.floor(Math.random() * results.length);
         res.json(results[rando]);
       }
