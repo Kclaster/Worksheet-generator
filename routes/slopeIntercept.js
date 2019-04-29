@@ -11,17 +11,18 @@ const slope_intercept_questionsf = require('../slope-intercept/including-negativ
 
 //the req needs to have a body with a max, min, and the number of question you are seeking.
 router.get('/', function(req, res) {
-  console.log('req', req.body);
-  let body = req.body;
-  let max = body.max;
-  let min = body.min;
-  let numOfQuestions = body.numOfQuestions;
+  let query = req.query;
+  let max = Number(query.max);
+  let min = Number(query.min);
+  console.log('max', max);
+  console.log('min', min);
+  let numOfQuestions = query.numOfQuestions;
   connection.query(
     'SELECT * FROM slope_intercept_both WHERE max <= ? AND min >= ?',
-    [max, min],
+    [max, min, numOfQuestions],
     function(req, results) {
       if (results) {
-        length = results.length;
+        let length = results.length;
         questionArr = [];
         for (i = 0; i < numOfQuestions; i++) {
           let rando = Math.floor(Math.random() * length);
