@@ -16,7 +16,7 @@ class QuickQuestion extends React.Component {
         axios
             .get(`/slope_intercept/one?min=-0&max=30`)
             .then(res => {
-                console.log(res)
+                // console.log(res)
                 this.setState({ question: res.data })
             })
     }

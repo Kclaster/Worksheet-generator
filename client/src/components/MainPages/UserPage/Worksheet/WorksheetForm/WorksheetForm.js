@@ -33,7 +33,7 @@ class WorksheetForm extends React.Component {
     getEquations = () => {
 
         axios
-            .get(`/slope_intercept?min=-15&max=30&numOfQuestions=10`)
+            .get(`/slope_intercept?min=1&max=30&numOfQuestions=10`)
             .then(res => {
                 console.log(res)
                 this.setState({ question: res.data })
