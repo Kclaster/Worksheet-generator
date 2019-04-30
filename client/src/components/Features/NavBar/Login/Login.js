@@ -23,15 +23,15 @@ class Login extends React.Component {
     return (
       <div className="loginbox">
         <form action="/login" method="post">
-          <div class="form-group">
+          <div className="form-group">
             <label>Email</label>
             <br />
-            <input type="text" class="form-control" name="username" />
+            <input type="text" className="form-control" name="username" />
           </div>
-          <div class="form-group">
+          <div className="form-group">
             <label>Password</label>
             <br />
-            <input type="text" class="form-control" name="password" />
+            <input type="text" className="form-control" name="password" />
           </div>
         </form>
         <div>
