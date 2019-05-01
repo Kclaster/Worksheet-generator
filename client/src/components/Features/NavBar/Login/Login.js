@@ -4,8 +4,7 @@ import React from "react";
 import "./Login.css";
 // import MainPages from "../../../MainPages";
 import HomePage from "../../../MainPages/HomePage/homePage";
-import UserPage from "../../../MainPages/UserPage"
-
+import UserPage from "../../../MainPages/UserPage";
 
 class Login extends React.Component {
   constructor() {
@@ -38,6 +37,7 @@ class Login extends React.Component {
           <button type="submit" onClick={this.handleClick}>
             Login Button
           </button>
+          <button type="register">Register</button>
         </div>
 
         {this.state.displayUserPage ? <UserPage /> : <HomePage />}
