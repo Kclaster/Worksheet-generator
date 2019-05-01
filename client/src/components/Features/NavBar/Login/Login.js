@@ -1,11 +1,10 @@
 //Needs to connect to userpage/index.js
 
-import React from "react";
-import "./Login.css";
+import React from 'react';
+import './Login.css';
 // import MainPages from "../../../MainPages";
-import HomePage from "../../../MainPages/HomePage/homePage";
-import UserPage from "../../../MainPages/UserPage"
-
+import HomePage from '../../../MainPages/HomePage/homePage';
+import UserPage from '../../../MainPages/UserPage';
 
 class Login extends React.Component {
   constructor() {
@@ -39,7 +38,6 @@ class Login extends React.Component {
             Login Button
           </button>
         </div>
-
         {this.state.displayUserPage ? <UserPage /> : <HomePage />}
       </div>
     );

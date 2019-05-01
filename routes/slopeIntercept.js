@@ -30,6 +30,7 @@ router.get('/', function(req, res) {
             questionArr.push(results[rando]);
           }
         }
+        questionArr.forEach(cur => console.log(cur));
         res.json(questionArr);
       }
     }
