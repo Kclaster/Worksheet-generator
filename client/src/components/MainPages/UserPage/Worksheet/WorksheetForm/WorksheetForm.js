@@ -4,6 +4,7 @@ import './WorksheetForm.css'
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
+import WorksheetData from './WorksheetData';
 
 
 
@@ -13,10 +14,11 @@ class WorksheetForm extends React.Component {
     constructor() {
         super();
         this.state = {
-            max: 1,
+            max: 0,
             min: 0,
             numOfQuestions: 0,
-            question: null
+            question: [],
+            displayAnswers: false
         };
     }
 
@@ -33,16 +35,11 @@ class WorksheetForm extends React.Component {
     getEquations = () => {
 
         axios
-            .get(`/slope_intercept?min=1&max=30&numOfQuestions=10`)
+            .get(`/slope_intercept?min=${this.state.min}&max=${this.state.max}&numOfQuestions=${this.state.numOfQuestions}`)
             .then(res => {
                 console.log(res)
                 this.setState({ question: res.data })
             })
-    }
-
-    componentDidMount() {
-        this.getEquations();
-
     }
 
     handleEquations = (event) => {
@@ -51,13 +48,24 @@ class WorksheetForm extends React.Component {
         this.getEquations();
     }
 
+    handleClick = () => {
+        this.setState({ displayAnswers: !this.state.displayAnswers });
+      };
+    
+
+
+
     render() {
+        const renderedEquations = this.state.question.map((e, i) => {
+            return <WorksheetData key={i} index={Number(i + 0)} equations={e.question} answer={e.answer} displayAnswers={this.state.displayAnswers}/>
+        })
+
         return (
             <div>
                 <h1>Create a Worksheet</h1>
                 <form className='workshett-form'>
                     <div>
-                    <TextField
+                        <TextField
                             id="filled-number"
                             label="Min Number"
                             name='min'
@@ -86,8 +94,8 @@ class WorksheetForm extends React.Component {
                         <TextField
                             id="filled-number"
                             label="Number of Equations"
-                            name="numberOfEquations"
-                            value={this.state.numberOfEquations}
+                            name="numOfQuestions"
+                            value={this.state.numOfQuestions}
                             onChange={this.handleChange}
                             type="number"
                             InputLabelProps={{
@@ -111,23 +119,22 @@ class WorksheetForm extends React.Component {
                 </form>
 
 
-
-                {/* <MultipleSelect /> */}
-
-
-
-
-
-
-
-                <div className='Worksheet'>
                     <h1>Worksheet section....</h1>
-                    Equation:
-       {this.state.question && <h1>{this.state.question.question}</h1>}
+                    <Button
+                            variant="contained"
+                            onClick={this.handleClick}
+                            className="submit-btn"
+                            type="submit"
+                        >
+                            show answer
+            </Button>
+                <div className='Worksheet'>
 
-                    Answer:{this.state.question && <h1>{this.state.question.answer}</h1>}
+                    <div className="equation-container">
 
+                        {renderedEquations}
 
+                    </div>
                 </div>
             </div>
         )
