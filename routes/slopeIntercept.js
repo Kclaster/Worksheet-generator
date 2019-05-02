@@ -9,9 +9,19 @@ const slope_intercept_questionsd = require('../slope-intercept/including-negativ
 const slope_intercept_questionse = require('../slope-intercept/including-negatives/negmx=b-y');
 const slope_intercept_questionsf = require('../slope-intercept/including-negatives/y-b=mx');
 
+//function used to assure the number of repeated answers is limited to the percentage of the number of questions
+function counter(item, arr) {
+  let count = 0;
+  for (let cur of arr) {
+    if (item.answer === cur.answer) {
+      count++;
+    }
+  }
+  return count;
+}
+
 //the req needs to have a body with a max, min, and the number of question you are seeking.
 router.get('/', function(req, res) {
-  console.log('req', req.query);
   let query = req.query;
   let max = Number(query.max);
   let min = Number(query.min);
@@ -36,7 +46,7 @@ router.get('/', function(req, res) {
     filtered = Array.from(
       questionArr
         .reduce((acc, cur) => {
-          if (!acc.has(cur.answer)) {
+          if (counter(cur, acc) <= Math.ceil(numOfQuestions * 0.1)) {
             return acc.set(cur.answer, cur);
           } else {
             return acc;
@@ -44,7 +54,6 @@ router.get('/', function(req, res) {
         }, new Map())
         .values()
     );
-    console.log('boom', filtered);
     if (filtered.length === numOfQuestions) {
       res.json(filtered);
     } else {
@@ -52,12 +61,10 @@ router.get('/', function(req, res) {
         'SELECT * FROM slope_intercept_both WHERE max <= ? AND min >= ?',
         [max, min, numOfQuestions - filtered.length],
         function(req, results) {
-          console.log('second result');
           if (results) {
             let length = results.length;
             for (i = 0; i < numOfQuestions - filtered.length; i++) {
               let rando = Math.floor(Math.random() * length);
-              console.log('filtered Arrrrrrrrrrrrrrrrrrrrrrrrrrr', filtered);
               if (!filtered.includes(results[rando])) {
                 filtered.push(results[rando]);
               }
