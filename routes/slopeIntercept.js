@@ -35,10 +35,13 @@ router.get('/', function(req, res) {
   function filteredArr(questionArr) {
     filtered = Array.from(
       questionArr
-        .reduce(
-          (acc, cur) => (!acc.has(cur.answer) ? acc.set(cur.answer, cur) : acc),
-          new Map()
-        )
+        .reduce((acc, cur) => {
+          if (!acc.has(cur.answer)) {
+            return acc.set(cur.answer, cur);
+          } else {
+            return acc;
+          }
+        }, new Map())
         .values()
     );
     console.log('boom', filtered);
