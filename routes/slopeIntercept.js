@@ -29,11 +29,43 @@ router.get('/', function(req, res) {
             questionArr.push(results[rando]);
           }
         }
-        questionArr.forEach(cur => console.log(cur));
-        res.json(questionArr);
       }
     }
   );
+  function filteredArr(questionArr) {
+    filtered = Array.from(
+      questionArr
+        .reduce(
+          (acc, cur) => (!acc.has(cur.answer) ? acc.set(cur.answer, cur) : acc),
+          new Map()
+        )
+        .values()
+    );
+    console.log('boom', filtered);
+    if (filtered.length === numOfQuestions) {
+      res.json(filtered);
+    } else {
+      connection.query(
+        'SELECT * FROM slope_intercept_both WHERE max <= ? AND min >= ?',
+        [max, min, numOfQuestions - filtered.length],
+        function(req, results) {
+          console.log('second result');
+          if (results) {
+            let length = results.length;
+            for (i = 0; i < numOfQuestions - filtered.length; i++) {
+              let rando = Math.floor(Math.random() * length);
+              console.log('filtered Arrrrrrrrrrrrrrrrrrrrrrrrrrr', filtered);
+              if (!filtered.includes(results[rando])) {
+                filtered.push(results[rando]);
+              }
+            }
+          }
+          filteredArr(filtered);
+        }
+      );
+    }
+  }
+  filteredArr(questionArr);
 });
 
 router.get('/one', async function(req, res) {
