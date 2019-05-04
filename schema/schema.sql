@@ -56,4 +56,11 @@ CREATE TABLE `standard_form_both` (
   `min` integer(100) NOT NUll,
   PRIMARY KEY (`id`)
 );
-
+CREATE TABLE `users` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `first_name` VARCHAR(45) NULL,
+  `last_name` VARCHAR(45) NULL,
+  `email` VARCHAR(255) NULL,
+  `password` VARCHAR(255) NULL,
+  `created` DATE NULL,
+  PRIMARY KEY (`id`));
