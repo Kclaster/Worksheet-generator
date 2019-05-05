@@ -3,7 +3,7 @@
 import React from "react";
 import "./Login.css";
 import MainPages from "../../../MainPages";
-import HomePage from "../../../MainPages/HomePage/homePage";
+import HomePage from "../../../MainPages/HomePage/HomePage.js";
 import UserPage from "../../../MainPages/UserPage";
 import { GoogleLogin } from "react-google-login-component";
 
