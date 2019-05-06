@@ -5,6 +5,8 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
 import WorksheetData from './WorksheetData';
+import jsPDF from "jspdf";
+import html2canvas from 'html2canvas'
 
 
 
@@ -51,6 +53,20 @@ class WorksheetForm extends React.Component {
     handleClick = () => {
         this.setState({ displayAnswers: !this.state.displayAnswers });
       };
+
+      printDocument =() =>{
+        html2canvas(document.querySelector('#divToPrint')).then(function(canvas) {
+            const imgData = canvas.toDataURL('image/png');
+            const pdf = new jsPDF({
+                orientation: 'portrait',
+              });
+              const imgProps= pdf.getImageProperties(imgData);
+              const pdfWidth = pdf.internal.pageSize.getWidth();
+              const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+              pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight-50);
+              pdf.save('download.pdf');
+        });
+      }
     
 
 
@@ -128,7 +144,15 @@ class WorksheetForm extends React.Component {
                         >
                             show answer
             </Button>
-                <div className='Worksheet'>
+            <Button
+                            variant="contained"
+                            onClick={this.printDocument}
+                            className="submit-btn"
+                            type="submit"
+                        >
+                            download
+            </Button>
+                <div id= "divToPrint" className='Worksheet'>
 
                     <div className="equation-container">
 
