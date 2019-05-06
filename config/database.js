@@ -7,6 +7,6 @@ module.exports = {
      'user':'root',
      'password': password
     },
-    'database':'slope_intercept',
+    'database':'nodejs_login',
     'user_table':'user'
    }

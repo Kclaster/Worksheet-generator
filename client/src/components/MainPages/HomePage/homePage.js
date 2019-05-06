@@ -1,6 +1,6 @@
 import React from 'react'
 import AboutContainer from './AboutContainer/AboutContainer.js'
-import './HomePage.css'
+import './style.css'
 
 
 class HomePage extends React.Component{

@@ -1,8 +1,8 @@
 import React from "react";
 import Login from "./Login/Login.js";
-import "./NavBar.css";
-// import AboutContainer from "../../MainPages/HomePage/AboutContainer/AboutContainer";
-import HomePage from "../../MainPages/HomePage/HomePage.js";
+import "./index.css";
+import AboutContainer from "../../MainPages/HomePage/AboutContainer/AboutContainer";
+import HomePage from "../../MainPages/HomePage/homePage.js";
 
 class NavBar extends React.Component {
   constructor() {
