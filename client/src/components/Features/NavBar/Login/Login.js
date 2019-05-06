@@ -8,7 +8,6 @@ import UserPage from "../../../MainPages/UserPage";
 import { GoogleLogin } from "react-google-login-component";
 
 class Login extends React.Component {
-
   constructor(props, context) {
     super(props, context);
     this.state = {
@@ -47,6 +46,7 @@ class Login extends React.Component {
         </button>
         {this.state.displayUserPage ? <UserPage /> : <HomePage />}
       </div>
+        
     );
   }
 }
