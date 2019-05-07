@@ -118,5 +118,4 @@ router.post('/negative', function(req, res) {
   });
   res.send('posted');
 });
-
 module.exports = router;

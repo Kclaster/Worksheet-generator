@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
-import HomePage from "../../MainPages/HomePage/homePage";
+import HomePage from "../../MainPages/HomePage/HomePage";
 
 class NavBarLogin extends Component {
     logOut(e) {
