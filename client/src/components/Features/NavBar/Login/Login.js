@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import { login } from './UserFunctions'
+import UserPage from '.././../../MainPages/UserPage';
+import { withRouter } from 'react-router-dom'
+
 
 class Login extends Component {
     constructor() {
@@ -27,7 +30,7 @@ class Login extends Component {
 
         login(user).then(res => {
             if (res) {
-                this.props.history.push(`/profile`)
+                this.props.history.push(<UserPage/>)
             }
         })
     }
@@ -63,6 +66,7 @@ class Login extends Component {
                                 className="btn btn-lg btn-primary btn-block">
                                 Sign in
                             </button>
+                            
                         </form>
                     </div>
                 </div>
@@ -71,4 +75,4 @@ class Login extends Component {
     }
 }
 
-export default Login
+export default withRouter(Login)

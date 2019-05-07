@@ -22,7 +22,11 @@ export const login = user => {
         })
         .then(res => {
             localStorage.setItem('usertoken', res.data)
+            console.log(res.data); 
+            //////////////////////////////////////////////////////////////////////
+            /// res.data gives token. need to store in redux to do condtional renderin for sercure pages and content. Good luck, future kyle.
             return res.data
+            
         })
         .catch(err => {
             console.log(err)

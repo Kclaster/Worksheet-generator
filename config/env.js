@@ -1,7 +1,8 @@
+var password = require('./config');
 const env = {
     database: 'slope_intercept',
     username: 'root',
-    password: 'Qwer!234',
+    password: password,
     host: 'localhost',
     dialect: 'mysql',
     pool: {
