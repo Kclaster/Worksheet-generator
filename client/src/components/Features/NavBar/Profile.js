@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import jwt_decode from 'jwt-decode'
+import UserPage from "../../MainPages/UserPage";
 
 class Profile extends Component {
     constructor() {
@@ -42,9 +43,17 @@ class Profile extends Component {
                                 <td>Email</td>
                                 <td>{this.state.email}</td>
                             </tr>
+                            
                         </tbody>
+                        
+//loading front UI UserPage -PDF's spreadsheet creation.  
+                        <UserPage />
+//*****************************************************************************
+
                     </table>
+                  
                 </div>
+               
             </div>
         )
     }

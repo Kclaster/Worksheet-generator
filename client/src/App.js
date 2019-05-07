@@ -49,6 +49,9 @@ import { BrowserRouter, Route } from 'react-router-dom'
 import Landing from "./components/Landing";
 import NavBar from "./components/Features/NavBar/NavBar.js";
 import Footer from "./components/Features/Footer/Footer.js";
+import Login from "./components/Features/NavBar/Login/Login";
+import Profile from './components/Features/NavBar/Profile';
+import Register from './components/Features/NavBar/Register/Register';
 
 
 
@@ -59,10 +62,10 @@ class App extends Component {
         <div className="App">
           <NavBar />
           <Route exact path="/" component={Landing} />
-          <div className="container">
-            {/* <Route exact path="/profile" component={Profile} /> */}
-            {/* <Route exact path="/login" component={Login} />
-            <Route exact path="/profile" component={Profile} /> */}
+          <div className="container">  
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/Register" component={Register} />
+            <Route exact path="/profile" component={Profile} />
           </div>
           <Footer />
         </div>

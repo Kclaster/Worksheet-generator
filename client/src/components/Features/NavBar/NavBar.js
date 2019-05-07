@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
-import Login from './Login/Login.js'
 import HomePage from "../../MainPages/HomePage/homePage";
+ //import UserPage from "../NavBar/Profile";
+//import Profile from '../NavBar/Profile';
 
 class NavBarLogin extends Component {
     logOut(e) {
         e.preventDefault()
+        // removes token from browser
         localStorage.removeItem('usertoken')
         this.props.history.push(`/`)
     }
@@ -64,9 +66,9 @@ class NavBarLogin extends Component {
                     </ul>
                     {localStorage.usertoken ? userLink : loginRegLink}
                 </div>
-                <Login />
             </nav>
             <HomePage />
+           
             </div>
         )
     }
