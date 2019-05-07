@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import HomePage from "../../MainPages/HomePage/homePage";
- //import UserPage from "../NavBar/Profile";
-//import Profile from '../NavBar/Profile';
 
 class NavBarLogin extends Component {
     logOut(e) {
@@ -45,15 +43,6 @@ class NavBarLogin extends Component {
         return (
           <div>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark rounded">
-                <button className="navbar-toggler"
-                    type="button"
-                    data-toggle="collapse"
-                    data-target="#navbar1"
-                    aria-controls="navbar1"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span className="navbar-toggle-icon"></span>
-                </button>
 
                 <div className="collapse navbar-collapse justify-content-md-center"
                     id="navbar1">
