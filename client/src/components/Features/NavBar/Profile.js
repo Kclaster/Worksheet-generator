@@ -46,9 +46,8 @@ class Profile extends Component {
                             
                         </tbody>
                         
-//loading front UI UserPage -PDF's spreadsheet creation.  
-                        <UserPage />
-//*****************************************************************************
+
+<UserPage />
 
                     </table>
                   
