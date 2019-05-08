@@ -7,10 +7,16 @@
     "@material-ui/core": "^3.9.3",
     "axios": "^0.18.0",
     "create-react-context": "^0.2.3",
+    "html2canvas": "^1.0.0-rc.1",
+    "jspdf": "^1.5.3",
     "react": "^16.8.6",
+    "react-bootstrap": "^1.0.0-beta.8",
     "react-dom": "^16.8.6",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.5"
+    "react-google-login-component": "^0.9.3",
+    "react-scripts": "2.1.8"
+
   },
   "scripts": {
     "start": "react-scripts start",

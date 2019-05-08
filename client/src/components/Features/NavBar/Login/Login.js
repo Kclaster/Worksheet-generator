@@ -1,7 +1,10 @@
+
 import React, { Component } from 'react'
 import { login } from './UserFunctions'
 import UserPage from '.././../../MainPages/UserPage';
 import { withRouter } from 'react-router-dom'
+
+//Needs to connect to userpage/index.js
 
 
 class Login extends Component {

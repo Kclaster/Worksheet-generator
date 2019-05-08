@@ -1,16 +1,26 @@
 import React from 'react';
+import './WorksheetForm.css'
+// import MultipleSelect from './MultipleSelect'
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import axios from 'axios';
+import WorksheetData from './WorksheetData';
+import jsPDF from "jspdf";
+import html2canvas from 'html2canvas'
+
+
+
 
 
 class WorksheetForm extends React.Component {
     constructor() {
         super();
         this.state = {
-            teachingLevel: '',
-            numberOfStudents: 0,
-            numberOfEquations: 0,
-            equationType: '',
+            max: 0,
+            min: 0,
+            numOfQuestions: 0,
+            question: [],
+            displayAnswers: false
         };
     }
 
@@ -24,71 +34,97 @@ class WorksheetForm extends React.Component {
     };
 
 
+    getEquations = () => {
+
+        axios
+            .get(`/slope_intercept?min=${this.state.min}&max=${this.state.max}&numOfQuestions=${this.state.numOfQuestions}`)
+            .then(res => {
+                console.log(res)
+                this.setState({ question: res.data })
+            })
+    }
+
+    handleEquations = (event) => {
+        event.preventDefault()
+
+        this.getEquations();
+    }
+
+    handleClick = () => {
+        this.setState({ displayAnswers: !this.state.displayAnswers });
+      };
+
+      printDocument =() =>{
+        html2canvas(document.querySelector('#divToPrint')).then(function(canvas) {
+            const imgData = canvas.toDataURL('image/png');
+            const pdf = new jsPDF({
+                orientation: 'portrait',
+              });
+              const imgProps= pdf.getImageProperties(imgData);
+              const pdfWidth = pdf.internal.pageSize.getWidth();
+              const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+              pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight-50);
+              pdf.save('download.pdf');
+        });
+      }
+    
+
+
+
     render() {
+        const renderedEquations = this.state.question.map((e, i) => {
+            return <WorksheetData key={i} index={Number(i + 0)} equations={e.question} answer={e.answer} displayAnswers={this.state.displayAnswers}/>
+        })
+
         return (
             <div>
                 <h1>Create a Worksheet</h1>
                 <form className='workshett-form'>
-                    <div className="teachingLevel">
+                    <div>
                         <TextField
-                            id="outlined-name"
-                            label="Learning Level"
-                            name='teachingLevel'
-                            value={this.state.teachingLevel}
-                            onChange={this.handleChange}
-                            margin="normal"
-                            variant="outlined"
-                            fullWidth
-                        />
-                    </div>
-                    <div className="numberOfStudents">
-                        <TextField
-                            id="outlined-number"
-                            label="Number of students?"
-                            name='numberOfStudents'
-                            value={this.state.numberOfStudents}
+                            id="filled-number"
+                            label="Min Number"
+                            name='min'
+                            value={this.state.min}
                             onChange={this.handleChange}
                             type="number"
-                            fullWidth
                             InputLabelProps={{
                                 shrink: true,
                             }}
                             margin="normal"
-                            variant="outlined"
+                            variant="filled"
                         />
-                    </div>
-                    <div className="numberOfEquations">
                         <TextField
-                            id="outlined-number"
-                            label="Number of equations"
-                            name='numberOfEquations'
-                            value={this.state.numberOfEquations}
+                            id="filled-number"
+                            label="Max Number"
+                            name="max"
+                            value={this.state.max}
                             onChange={this.handleChange}
                             type="number"
-                            fullWidth
                             InputLabelProps={{
                                 shrink: true,
                             }}
                             margin="normal"
-                            variant="outlined"
+                            variant="filled"
                         />
-                    </div>
-                    <div className="equationType">
                         <TextField
-                            id="outlined-name"
-                            label=" What type of eqaution"
-                            name='equationType'
-                            value={this.state.equationType}
+                            id="filled-number"
+                            label="Number of Equations"
+                            name="numOfQuestions"
+                            value={this.state.numOfQuestions}
                             onChange={this.handleChange}
+                            type="number"
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
                             margin="normal"
-                            variant="outlined"
-                            fullWidth
+                            variant="filled"
                         />
                     </div>
                     <div>
                         <Button
                             variant="contained"
-                            onClick={this.handleSubmit}
+                            onClick={this.handleEquations}
                             className="submit-btn"
                             type="submit"
                             value="Save"
@@ -96,9 +132,34 @@ class WorksheetForm extends React.Component {
                             Populate
             </Button>
                     </div>
-
-
                 </form>
+
+
+                    <h1>Worksheet section....</h1>
+                    <Button
+                            variant="contained"
+                            onClick={this.handleClick}
+                            className="submit-btn"
+                            type="submit"
+                        >
+                            show answer
+            </Button>
+            <Button
+                            variant="contained"
+                            onClick={this.printDocument}
+                            className="submit-btn"
+                            type="submit"
+                        >
+                            download
+            </Button>
+                <div id= "divToPrint" className='Worksheet'>
+
+                    <div className="equation-container">
+
+                        {renderedEquations}
+
+                    </div>
+                </div>
             </div>
         )
     }
