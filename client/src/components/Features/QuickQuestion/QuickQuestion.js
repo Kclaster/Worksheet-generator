@@ -5,6 +5,7 @@ import axios from "axios";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
+import Divider from '@material-ui/core/Divider';
 
 class QuickQuestion extends React.Component {
   constructor() {
@@ -33,6 +34,7 @@ class QuickQuestion extends React.Component {
     console.log(this.state.question);
     return (
       <div>
+        <br></br><br></br>
         <Typography variant="h4" component="h4">
           Quick Question
         </Typography>
@@ -40,10 +42,12 @@ class QuickQuestion extends React.Component {
           <Typography variant="h5" component="h5">
             Equation:
           </Typography>
+          <Divider />
           {this.state.question && <h1>{this.state.question.question}</h1>}
           <Typography variant="h5" component="h5">
             Answer:
           </Typography>
+          <Divider />
           {this.state.question && <h1>{this.state.question.answer}</h1>}
         </Paper>
 

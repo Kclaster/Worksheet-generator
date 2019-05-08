@@ -3,22 +3,28 @@ import React from "react";
 import QuickQuestion from "../../../Features/QuickQuestion/QuickQuestion";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
+import Grid from "@material-ui/core/Grid";
 
 class UserHome extends React.Component {
   render() {
     return (
       <div className="userHome">
-        <Typography variant="h4" component="h4">
-          Jump Back In
-        </Typography>
-        <Paper className="worksheet-list">
-          {" "}
-          <Typography variant="h5" component="h5">
-            Equation History:
+        <Grid item xs={6}>
+          <Typography variant="h4" component="h4">
+            Jump Back In
           </Typography>
-        </Paper>
+
+          <Paper className="worksheet-list">
+            <Typography variant="h5" component="h5">
+              Equation History:
+            </Typography>
+          </Paper>
+        </Grid>
+
         <div>
-          <QuickQuestion />
+          <Grid item xs={6}>
+            <QuickQuestion />
+          </Grid>
         </div>
       </div>
     );

@@ -9,7 +9,7 @@ import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
-
+import Grid from "@material-ui/core/Grid";
 
 class WorksheetForm extends React.Component {
   constructor() {
@@ -143,7 +143,7 @@ class WorksheetForm extends React.Component {
             </Button>
           </div>
         </form>
-
+        <br></br><br></br>
         <Typography variant="h4" component="h4">
           WorkSheet Section
         </Typography>
@@ -167,11 +167,13 @@ class WorksheetForm extends React.Component {
         >
           Download
         </Button>
-        <div id="divToPrint" className="Worksheet">
 
+        {/* Remove grid if issues */}
+        <Grid item xs={12}>
+          <div id="divToPrint" className="Worksheet">
             <div className="equation-container">{renderedEquations}</div>
-
-        </div>
+          </div>
+        </Grid>
       </div>
     );
   }

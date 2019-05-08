@@ -1,16 +1,10 @@
-//Needs to connect to userpage/index.js
-
 import React from "react";
 import "./Login.css";
-// import MainPages from "../../../MainPages";
+import MainPages from "../../../MainPages";
 import HomePage from "../../../MainPages/HomePage/HomePage.js";
 import UserPage from "../../../MainPages/UserPage";
 import { GoogleLogin } from "react-google-login-component";
-// import Button from "../../../Buttons";
-import Button from '@material-ui/core/Button';
-
-
-
+import Button from "@material-ui/core/Button";
 
 class Login extends React.Component {
   // constructor() {
@@ -62,14 +56,14 @@ class Login extends React.Component {
     this.setState({ displayUserPage: !this.state.displayUserPage });
   };
 
-  responseGoogle(googleUser) {
-    var id_token = googleUser.getAuthResponse().id_token;
-    var googleId = googleUser.getId();
+  // responseGoogle(googleUser) {
+  //   var id_token = googleUser.getAuthResponse().id_token;
+  //   var googleId = googleUser.getId();
 
-    console.log({ googleId });
-    console.log({ accessToken: id_token });
-    //anything else you want to do(save to localStorage)...
-  }
+  //   console.log({ googleId });
+  //   console.log({ accessToken: id_token });
+  //   //anything else you want to do(save to localStorage)...
+  // }
 
   render() {
     return (
@@ -84,9 +78,8 @@ class Login extends React.Component {
           buttonText="Login With Google"
           onClick={this.handleClick}
         />
-        {/* Shows up all black, next to google */}
-        <Button variant="contained" color="primary"  onClick={this.handleClick}>
-        Test Switch
+        <Button variant="contained" color="primary" onClick={this.handleClick}>
+          Test Switch
         </Button>
         {this.state.displayUserPage ? <UserPage /> : <HomePage />}
       </div>
