@@ -1,108 +1,81 @@
+
+import React, { Component } from 'react'
+import { login } from './UserFunctions'
+import UserPage from '.././../../MainPages/UserPage';
+import { withRouter } from 'react-router-dom'
+
 //Needs to connect to userpage/index.js
 
-import React from "react";
-import "./Login.css";
-import MainPages from "../../../MainPages";
-import HomePage from "../../../MainPages/HomePage/HomePage.js";
-import UserPage from "../../../MainPages/UserPage";
-import { GoogleLogin } from "react-google-login-component";
 
-class Login extends React.Component {
-  // constructor() {
-  //   super();
-  //   this.state = {
-  //     displayUserPage: false
-  //   };
-  // }
+class Login extends Component {
+    constructor() {
+        super()
+        this.state = {
+            email: '',
+            password: ''
+        }
 
-  // handleClick = () => {
-  //   this.setState({ displayUserPage: !this.state.displayUserPage });
-  // };
+        this.onChange = this.onChange.bind(this)
+        this.onSubmit = this.onSubmit.bind(this)
+    }
 
-  // render() {
-  //   return (
-  //     <div className="loginbox">
-  //       <form action="/login" method="post">
-  //         <div className="form-group">
-  //           <label>Email</label>
-  //           <br />
-  //           <input type="text" className="form-control" name="username" />
-  //         </div>
-  //         <div className="form-group">
-  //           <label>Password</label>
-  //           <br />
-  //           <input type="text" className="form-control" name="password" />
-  //         </div>
-  //       </form>
-  //       <div>
-  //         <button type="submit" onClick={this.handleClick}>
-  //           Login Button
-  //         </button>
-  //         <button type="register">Register</button>
-  //       </div>
+    onChange (e) {
+        this.setState({ [e.target.name]: e.target.value })
+    }
 
-  //       {this.state.displayUserPage ? <UserPage /> : <HomePage />}
-  //     </div>
-  //   );
-  // }
+    onSubmit (e) {
+        e.preventDefault()
 
-  constructor(props, context) {
-    super(props, context);
-    this.state = {
-      displayUserPage: false
-    };
-  }
+        const user = {
+            email: this.state.email,
+            password: this.state.password
+        }
 
-  handleClick = () => {
-    this.setState({ displayUserPage: !this.state.displayUserPage });
-  };
+        login(user).then(res => {
+            if (res) {
+                this.props.history.push(<UserPage/>)
+            }
+        })
+    }
 
-  responseGoogle(googleUser) {
-    var id_token = googleUser.getAuthResponse().id_token;
-    var googleId = googleUser.getId();
-
-    console.log({ googleId });
-    console.log({ accessToken: id_token });
-    //anything else you want to do(save to localStorage)...
-  }
-
-  render() {
-    return (
-      <div className="loginbox">
-        <GoogleLogin
-          socialId="1073244498652-n2m4u3fru7io3pncs484c72qh35sp1u4.apps.googleusercontent.com"
-          className="google-login"
-          scope="profile"
-          prompt="select_account"
-          fetchBasicProfile={false}
-          responseHandler={this.responseGoogle}
-          buttonText="Login With Google"
-          onClick={this.handleClick}
-        />
-        <button type="submit" onClick={this.handleClick}>
-          Test Switch
-        </button>
-        {this.state.displayUserPage ? <UserPage /> : <HomePage />}
-      </div>
-        
-        /* <GoogleLogin
-          clientId="1073244498652-n2m4u3fru7io3pncs484c72qh35sp1u4.apps.googleusercontent.com"
-          render={renderProps => (
-            <button
-              onClick={renderProps.onClick}
-              disabled={renderProps.disabled}
-            >
-              This is my custom Google button
-            </button>
-          )}
-          buttonText="Login"
-          onSuccess={this.responseGoogle}
-          onFailure={this.responseGoogle}
-          cookiePolicy={"single_host_origin"}
-        />
-      </div> */
-    );
-  }
+    render () {
+        return (
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-6 mt-5 mx-auto">
+                        <form noValidate onSubmit={this.onSubmit}>
+                            <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
+                            <div className="form-group">
+                                <label htmlFor="email">Email Address</label>
+                                <input type="email"
+                                    className="form-control"
+                                    name="email"
+                                    placeholder="Enter Email"
+                                    value={this.state.email}
+                                    onChange={this.onChange}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="password">Password</label>
+                                <input type="password"
+                                    className="form-control"
+                                    name="password"
+                                    placeholder="Enter Password"
+                                    value={this.state.password}
+                                    onChange={this.onChange}
+                                />
+                            </div>
+                            <button type="submit"
+                                className="btn btn-lg btn-primary btn-block">
+                                Sign in
+                            </button>
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+        )
+    }
 }
 
-export default Login;
+export default withRouter(Login)
