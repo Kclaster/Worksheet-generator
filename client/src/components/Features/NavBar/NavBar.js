@@ -1,19 +1,66 @@
-import React from 'react';
-import Login from './Login/Login.js'
-import './index.css'
+import React, { Component } from 'react'
+import { Link, withRouter } from 'react-router-dom'
+import HomePage from "../../MainPages/HomePage/homePage";
 
+class NavBarLogin extends Component {
+    logOut(e) {
+        e.preventDefault()
+        // removes token from browser
+        localStorage.removeItem('usertoken')
+        this.props.history.push(`/`)
+    }
 
+    render() {
+        const loginRegLink = (
+            <ul className="navbar-nav">
+                <li className="nav-item">
+                    <Link to="/login" className="nav-link">
+                        Login
+                    </Link>
+                </li>
+                <li className="nav-item">
+                    <Link to="/register" className="nav-link">
+                        Register
+                    </Link>
+                </li>
+            </ul>
+        )
+        const userLink = (
+            <ul className="navbar-nav">
+                <li className="nav-item">
+                    <Link to="/profile" className="nav-link">
+                        User
+                    </Link>
+                </li>
+                <li className="nav-item">
+                    <a href="" onClick={this.logOut.bind(this)} className="nav-link">
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        )
 
-class NavBar extends React.Component{
-    render(){
         return (
-            <div className='NavBar'>
-            This is the NavBar Main
-            <Login />
-            
+          <div>
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark rounded">
+
+                <div className="collapse navbar-collapse justify-content-md-center"
+                    id="navbar1">
+                    <ul className="navbar-nav">
+                        <li className="nav-item">
+                            <Link to="/" className="nav-link">
+                                Home
+                            </Link>
+                        </li>
+                    </ul>
+                    {localStorage.usertoken ? userLink : loginRegLink}
+                </div>
+            </nav>
+            <HomePage />
+           
             </div>
         )
     }
 }
 
-export default NavBar;
+export default withRouter(NavBarLogin)
