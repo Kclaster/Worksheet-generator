@@ -2,10 +2,15 @@
 
 import React from "react";
 import "./Login.css";
-import MainPages from "../../../MainPages";
+// import MainPages from "../../../MainPages";
 import HomePage from "../../../MainPages/HomePage/HomePage.js";
 import UserPage from "../../../MainPages/UserPage";
 import { GoogleLogin } from "react-google-login-component";
+// import Button from "../../../Buttons";
+import Button from '@material-ui/core/Button';
+
+
+
 
 class Login extends React.Component {
   // constructor() {
@@ -79,13 +84,14 @@ class Login extends React.Component {
           buttonText="Login With Google"
           onClick={this.handleClick}
         />
-        <button type="submit" onClick={this.handleClick}>
-          Test Switch
-        </button>
+        {/* Shows up all black, next to google */}
+        <Button variant="contained" color="primary"  onClick={this.handleClick}>
+        Test Switch
+        </Button>
         {this.state.displayUserPage ? <UserPage /> : <HomePage />}
       </div>
-        
-        /* <GoogleLogin
+
+      /* <GoogleLogin
           clientId="1073244498652-n2m4u3fru7io3pncs484c72qh35sp1u4.apps.googleusercontent.com"
           render={renderProps => (
             <button
