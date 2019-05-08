@@ -8,6 +8,7 @@
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "dependencies": {
+    "async": "^2.6.2",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.13.1",
     "connect-flash": "^0.1.1",
@@ -16,6 +17,8 @@
     "ejs": "^2.3.2",
     "express": "^4.16.4",
     "express-session": "^1.11.3",
+    "file-system": "^2.2.2",
+    "fs": "0.0.1-security",
     "http-errors": "^1.6.3",
     "jade": "^1.11.0",
     "morgan": "~1.9.0",

@@ -1,11 +1,12 @@
 //Needs to connect to userpage/index.js
 
-import React from "react";
-import "./Login.css";
-import MainPages from "../../../MainPages";
-import HomePage from "../../../MainPages/HomePage/HomePage.js";
-import UserPage from "../../../MainPages/UserPage";
-import { GoogleLogin } from "react-google-login-component";
+import React from 'react';
+import './Login.css';
+// import MainPages from "../../../MainPages";
+import HomePage from '../../../MainPages/HomePage/homePage';
+import UserPage from '../../../MainPages/UserPage';
+import React from 'react';
+import './Login.css';
 
 class Login extends React.Component {
   // constructor() {
@@ -84,8 +85,8 @@ class Login extends React.Component {
         </button>
         {this.state.displayUserPage ? <UserPage /> : <HomePage />}
       </div>
-        
-        /* <GoogleLogin
+
+      /* <GoogleLogin
           clientId="1073244498652-n2m4u3fru7io3pncs484c72qh35sp1u4.apps.googleusercontent.com"
           render={renderProps => (
             <button
