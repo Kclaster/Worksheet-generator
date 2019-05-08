@@ -30,4 +30,6 @@ const slopeIntercept = (min_size, max_size) => {
   return equation;
 };
 
-module.exports = slopeIntercept(-30, 30);
+slopeIntercept(1, 10);
+
+module.exports = slopeIntercept(-50, 50);

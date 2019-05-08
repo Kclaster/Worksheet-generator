@@ -5,7 +5,7 @@ import './Footer.css'
 class Footer extends React.Component{
     render(){
         return(
-        <div className='Footer'>Worksheet Generator // 2019</div>
+        <div className='Footer'>I am a Footer</div>
         )
     }
 }

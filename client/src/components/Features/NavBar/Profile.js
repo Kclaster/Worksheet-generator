@@ -44,11 +44,8 @@ class Profile extends Component {
                                 <td>{this.state.email}</td>
                             </tr>
                             
-                        </tbody>
-                        
-
+                        </tbody>                      
 <UserPage />
-
                     </table>
                   
                 </div>

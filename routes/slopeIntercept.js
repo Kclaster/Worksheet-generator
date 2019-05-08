@@ -8,48 +8,39 @@ const slope_intercept_questionsc = require('../slope-intercept/including-negativ
 const slope_intercept_questionsd = require('../slope-intercept/including-negatives/negb+y=mx');
 const slope_intercept_questionse = require('../slope-intercept/including-negatives/negmx=b-y');
 const slope_intercept_questionsf = require('../slope-intercept/including-negatives/y-b=mx');
+var app = express();
 
-//the req needs to have a body with a max, min, and the number of question you are seeking.
 router.get('/', function(req, res) {
-  let query = req.query;
-  let max = Number(query.max);
-  let min = Number(query.min);
-  console.log('max', max);
-  console.log('min', min);
-  let numOfQuestions = query.numOfQuestions;
-  connection.query(
-    'SELECT * FROM slope_intercept_both WHERE max <= ? AND min >= ?',
-    [max, min, numOfQuestions],
-    function(req, results) {
-      if (results) {
-        let length = results.length;
-        questionArr = [];
-        for (i = 0; i < numOfQuestions; i++) {
-          let rando = Math.floor(Math.random() * length);
-          if (!questionArr.includes(results[rando])) {
-            questionArr.push(results[rando]);
-          }
-        }
-        res.json(questionArr);
-      }
+  connection.query('SELECT * FROM slope_intercept', function(req, results) {
+    if (results) {
+      res.json(results);
     }
-  );
+  });
 });
 
-router.get('/one', async function(req, res) {
-  let query = req.query;
-  let max = Number(query.max);
-  let min = Number(query.min);
+//the req needs to have a body with a max and min defined.
+router.get('/y=mx+b', function(req, res) {
+  let body = req.body;
+  let max = body.max;
+  let min = body.min;
   connection.query(
-    'SELECT * FROM slope_intercept_both WHERE max <= ? AND min >= ?',
+    'SELECT * FROM slope_intercept WHERE max <= ? AND min >= ?',
     [max, min],
-    async function(error, results, fields) {
-      if (error) {
-        throw error;
-      }
+    function(req, results) {
       if (results) {
-        let rando = Math.floor(Math.random() * results.length);
-        res.json(results[rando]);
+        length = results.length;
+        questionArr = [];
+        results.forEach((cur, index) => {
+          var min = 0;
+          var max = length;
+          var random = Math.floor(Math.random() * (+max - +min)) + +min;
+          document.write('Random Number Generated : ' + random);
+          length--;
+          if (index === random) {
+            questionArr.push(cur);
+          }
+        });
+        res.json(questionArr);
       }
     }
   );
@@ -57,66 +48,62 @@ router.get('/one', async function(req, res) {
 
 // Generate the equations to fill the database
 router.post('/', function(req, res) {
-  let sql =
-    'INSERT INTO slope_intercept_both(question, answer, max, min) VALUES ?';
+  console.log('akuna');
+  let sql = 'INSERT INTO slope_intercept(question, answer, max, min) VALUES ?';
   connection.query(sql, [slope_intercept_questions], function(err) {
-    if (err) throw err;
-  });
-  connection.query(sql, [slope_intercept_questionsa], function(err) {
-    if (err) throw err;
-  });
-  connection.query(sql, [slope_intercept_questionsb], function(err) {
-    if (err) throw err;
-  });
-  connection.query(sql, [slope_intercept_questionsc], function(err) {
-    if (err) throw err;
-  });
-  connection.query(sql, [slope_intercept_questionsd], function(err) {
-    if (err) throw err;
-  });
-  connection.query(sql, [slope_intercept_questionse], function(err) {
-    if (err) throw err;
-  });
-  connection.query(sql, [slope_intercept_questionsf], function(err) {
     if (err) throw err;
     connection.end();
   });
-  res.send('posted');
 });
+//doesn't include negatives
 
-router.post('/positive', function(req, res) {
-  let sql =
-    'INSERT INTO slope_intercept_positive(question, answer, max, min) VALUES ?';
-  connection.query(sql, [slope_intercept_questions], function(err) {
-    if (err) throw err;
-  });
+router.post('/b+mx=y', function(req, res) {
+  let sql = 'INSERT INTO b+mx=y(question, answer, max, min) VALUES ?';
   connection.query(sql, [slope_intercept_questionsa], function(err) {
     if (err) throw err;
+    connection.end();
   });
+});
+
+router.post('/mx+b=y', function(req, res) {
+  let sql = 'INSERT INTO mx+b=y(question, answer, max, min) VALUES ?';
   connection.query(sql, [slope_intercept_questionsb], function(err) {
     if (err) throw err;
     connection.end();
   });
-  res.send('posted');
 });
 
-router.post('/negative', function(req, res) {
-  let sql =
-    'INSERT INTO slope_intercept_negative(question, answer, max, min) VALUES ?';
+//includes negatives
+router.post('/mx=y-b', function(req, res) {
+  let sql = 'INSERT INTO mx=y-b(question, answer, max, min) VALUES ?';
   connection.query(sql, [slope_intercept_questionsc], function(err) {
     if (err) throw err;
+    connection.end();
   });
+});
+
+router.post('/negb+y=mx', function(req, res) {
+  let sql = 'INSERT INTO negb+y=mx(question, answer, max, min) VALUES ?';
   connection.query(sql, [slope_intercept_questionsd], function(err) {
     if (err) throw err;
+    connection.end();
   });
+});
+
+router.post('/negmx=b-y', function(req, res) {
+  let sql = 'INSERT INTO negmx=b-y(question, answer, max, min) VALUES ?';
   connection.query(sql, [slope_intercept_questionse], function(err) {
     if (err) throw err;
+    connection.end();
   });
+});
+
+router.post('/y-b=mx', function(req, res) {
+  let sql = 'INSERT INTO mx+b=y(question, answer, max, min) VALUES ?';
   connection.query(sql, [slope_intercept_questionsf], function(err) {
     if (err) throw err;
     connection.end();
   });
-  res.send('posted');
 });
 
 module.exports = router;
