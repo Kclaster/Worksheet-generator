@@ -18,7 +18,7 @@ const slopeIntercept = (min_size, max_size) => {
             } else {
               oppob = -Math.abs(b);
             }
-            equation.push([`${oppob} + ${y} = ${m}x`, 'x = ' + x, max, min]);
+            equation.push([`${oppob} + ${y} = ${m}x`, max, min, x, 'x = ' + x]);
           } else {
             if (b < 0) {
               oppob = Math.abs(b);
@@ -29,9 +29,10 @@ const slopeIntercept = (min_size, max_size) => {
             abs_y = Math.abs(y);
             equation.push([
               `${oppob} - ${abs_y} = ${m}x`,
-              'x = ' + x,
               max,
-              min
+              min,
+              x,
+              'x = ' + x
             ]);
           }
         }
@@ -47,4 +48,4 @@ const slopeIntercept = (min_size, max_size) => {
   return equation;
 };
 
-module.exports = slopeIntercept(-50, 50);
+module.exports = slopeIntercept;
