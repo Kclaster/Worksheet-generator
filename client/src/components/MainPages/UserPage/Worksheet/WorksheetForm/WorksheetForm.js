@@ -132,7 +132,7 @@ class WorksheetForm extends React.Component {
           <div>
             <Button
               variant="contained"
-              color="primary"
+              color="secondary"
               variant="contained"
               onClick={this.handleEquations}
               className="submit-btn"
@@ -149,7 +149,7 @@ class WorksheetForm extends React.Component {
         </Typography>
         <Button
           variant="contained"
-          color="primary"
+          color="secondary"
           variant="contained"
           onClick={this.handleClick}
           className="submit-btn"
@@ -159,7 +159,7 @@ class WorksheetForm extends React.Component {
         </Button>
         <Button
           variant="contained"
-          color="primary"
+          color="secondary"
           variant="contained"
           onClick={this.printDocument}
           className="submit-btn"

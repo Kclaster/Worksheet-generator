@@ -1,7 +1,5 @@
 import React from "react";
-// import "./QuickQuestion.css";
 import axios from "axios";
-// import Button from '../../Buttons'
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
@@ -17,7 +15,6 @@ class QuickQuestion extends React.Component {
 
   getOneQuestion = () => {
     axios.get(`/slope_intercept/one?min=-0&max=30`).then(res => {
-      // console.log(res)
       this.setState({ question: res.data });
     });
   };
@@ -39,12 +36,12 @@ class QuickQuestion extends React.Component {
           Quick Question
         </Typography>
         <Paper className="quickQuestions-container">
-          <Typography variant="h5" component="h5">
+          <Typography variant="p" component="p">
             Equation:
           </Typography>
           <Divider />
           {this.state.question && <h1>{this.state.question.question}</h1>}
-          <Typography variant="h5" component="h5">
+          <Typography variant="p" component="p">
             Answer:
           </Typography>
           <Divider />
@@ -54,11 +51,11 @@ class QuickQuestion extends React.Component {
         <Button
           onClick={this.handleNewQuestion}
           variant="contained"
-          color="primary"
+          color="secondary"
         >
           Update Equation
         </Button>
-        <Button variant="contained" color="primary">
+        <Button variant="contained" color="secondary">
           Save Equation
         </Button>
       </div>

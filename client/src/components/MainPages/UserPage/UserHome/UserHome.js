@@ -9,22 +9,23 @@ class UserHome extends React.Component {
   render() {
     return (
       <div className="userHome">
+        
         <Grid item xs={6}>
           <Typography variant="h4" component="h4">
             Jump Back In
           </Typography>
 
           <Paper className="worksheet-list">
-            <Typography variant="h5" component="h5">
+            <Typography variant="p" component="p">
               Equation History:
             </Typography>
           </Paper>
         </Grid>
-
         <div>
           <Grid item xs={6}>
             <QuickQuestion />
           </Grid>
+          
         </div>
       </div>
     );

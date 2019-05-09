@@ -3,6 +3,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from '@material-ui/core/Button';
 import "./UserPref.css";
 // import Button from "../../../../../components/Buttons.js";
+import Typography from "@material-ui/core/Typography";
 
 class UserPref extends React.Component {
   constructor() {
@@ -48,7 +49,7 @@ class UserPref extends React.Component {
   render() {
     return (
       <div>
-        <h1>User Setting</h1>
+        <Typography variant="h4" component="h4">User Setting</Typography>
         <form className="user-settings">
           <div className="userName">
             <TextField
@@ -105,7 +106,7 @@ class UserPref extends React.Component {
           <div>
             <Button
               variant="contained"
-              color="primary"
+              color="secondary"
               onClick={this.handleSubmit}
               className="submit-btn"
               type="submit"

@@ -5,7 +5,7 @@ import Typography from "@material-ui/core/Typography";
 class Footer extends React.Component {
   render() {
     return (
-      <Typography variant="h5" component="h5">
+      <Typography variant="h6" component="h6">
         <div className="Footer">Worksheet Generator // 2019</div>
       </Typography>
     );

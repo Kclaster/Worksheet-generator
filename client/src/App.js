@@ -1,4 +1,3 @@
-
 // import React, { Component } from 'react';
 // import { BrowserRouter, Route } from 'react-router-dom';
 // import Landing from "./components/Landing";
@@ -8,8 +7,6 @@
 // import Profile from './components/Features/NavBar/Profile';
 // import Register from './components/Features/NavBar/Register/Register';
 
-
-
 // class App extends Component {
 //   render () {
 //     return (
@@ -17,7 +14,7 @@
 //         <div className="App">
 //           <NavBar />
 //           <Route exact path="/" component={Landing} />
-//           <div className="container">  
+//           <div className="container">
 //             <Route exact path="/login" component={Login} />
 //             <Route exact path="/Register" component={Register} />
 //             <Route exact path="/profile" component={Profile} />
@@ -33,7 +30,9 @@ import React from "react";
 import MainPages from "./components/MainPages";
 import NavBar from "./components/Features/NavBar/NavBar.js";
 import Footer from "./components/Features/Footer/Footer.js";
-import Login from "./components/Features/NavBar/Login/Login"
+import Login from "./components/Features/NavBar/Login/Login";
+// import Particles from "react-particles-js";
+import ParticlesCustom from "./components/Particles";
 
 class App extends React.Component {
   constructor() {
@@ -50,13 +49,10 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <section>
-          <Login />
-          
-        </section>
-        <footer>
-          <Footer />
-        </footer>
+        <Login />
+        <br />
+        <Footer />
+        <ParticlesCustom />
       </div>
     );
   }
