@@ -1,11 +1,11 @@
-import React from "react";
+// import React from "react";
 // import MainPages from "./components/MainPages";
-import NavBar from "./components/Features/NavBar/NavBar.js";
+// import NavBar from "./components/Features/NavBar/NavBar.js";
 import Footer from "./components/Features/Footer/Footer.js";
-import Login from "./components/Features/NavBar/Login/Login";
-import ParticlesCustom from "./components/Particles";
+// import Login from "./components/Features/NavBar/Login/Login";
+// import ParticlesCustom from "./components/Particles";
 
-import Footer from './components/Features/Footer/Footer.js';
+// import Footer from './components/Features/Footer/Footer.js';
 // import Login from './components/Features/NavBar/Login/Login';
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom'
@@ -19,12 +19,12 @@ import Register from './components/Features/NavBar/Register/Register';
 class App extends Component {
   render () {
     return (
-      <div>
-        <Login />
-        <br />
-        <Footer />
-        <ParticlesCustom />
-      </div>
+      // <div>
+      //   <Login />
+      //   <br />
+      //   <Footer />
+      //   <ParticlesCustom />
+      // </div>
       <BrowserRouter>
         <div className="App">
           <NavBar />
