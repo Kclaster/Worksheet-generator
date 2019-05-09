@@ -4,6 +4,14 @@ import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import Divider from '@material-ui/core/Divider';
+// External Dependencies
+import React from 'react';
+import { connect } from 'react-redux';
+import axios from 'axios';
+
+// Internal Dependencies
+import './QuickQuestion.css';
+import { setSavedQuestion } from '../../redux/actionCreators';
 
 class QuickQuestion extends React.Component {
   constructor() {
@@ -27,40 +35,34 @@ class QuickQuestion extends React.Component {
     this.getOneQuestion();
   };
 
+  handleClickSaveButton = () => {
+    this.props.setSavedQuestion(this.state.question);
+  };
+
   render() {
     console.log(this.state.question);
     return (
       <div>
-        <br></br><br></br>
-        <Typography variant="h4" component="h4">
-          Quick Question
-        </Typography>
-        <Paper className="quickQuestions-container">
-          <Typography variant="p" component="p">
-            Equation:
-          </Typography>
-          <Divider />
+        <h1>Quick Question</h1>
+        <div className="quickQuestions-container">
+          Equation:
           {this.state.question && <h1>{this.state.question.question}</h1>}
-          <Typography variant="p" component="p">
-            Answer:
-          </Typography>
-          <Divider />
-          {this.state.question && <h1>{this.state.question.answer}</h1>}
-        </Paper>
-
-        <Button
-          onClick={this.handleNewQuestion}
-          variant="contained"
-          color="secondary"
-        >
-          Update Equation
-        </Button>
-        <Button variant="contained" color="secondary">
-          Save Equation
-        </Button>
+          Answer:{this.state.question && <h1>{this.state.question.answer}</h1>}
+        </div>
+        <button onClick={this.handleNewQuestion}>Update Equation</button>
+        <button onClick={this.handleClickSaveButton}>Save Equation</button>
       </div>
     );
   }
 }
 
-export default QuickQuestion;
+const mapStateToProps = state => {
+  return {
+    questions: state.savedQuestions
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { setSavedQuestion }
+)(QuickQuestion);
