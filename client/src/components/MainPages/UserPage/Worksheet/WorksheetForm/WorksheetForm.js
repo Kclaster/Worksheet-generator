@@ -7,9 +7,9 @@ import axios from 'axios';
 import WorksheetData from './WorksheetData';
 import jsPDF from "jspdf";
 import html2canvas from 'html2canvas'
-
-
-
+import SavedQuickQuestions from '../../../../Features/QuickQuestion/SavedQuickQuestions';
+import { saveWorksheet, worksheetData } from '../../../../../redux/actions';
+import { connect } from 'react-redux'
 
 
 class WorksheetForm extends React.Component {
@@ -35,49 +35,67 @@ class WorksheetForm extends React.Component {
 
 
     getEquations = () => {
-
-        axios
+        return new Promise(resolve => axios
             .get(`/slope_intercept?min=${this.state.min}&max=${this.state.max}&numOfQuestions=${this.state.numOfQuestions}`)
             .then(res => {
                 console.log(res)
-                this.setState({ question: res.data })
+                this.setState({ question: res.data });
+                resolve('resolved');
             })
+        )
     }
 
     handleEquations = (event) => {
         event.preventDefault()
-
-        this.getEquations();
+        this.getEquations().then(() => this.handleWorksheetData());
     }
 
     handleClick = () => {
         this.setState({ displayAnswers: !this.state.displayAnswers });
-      };
+    };
 
-      printDocument =() =>{
-        html2canvas(document.querySelector('#divToPrint')).then(function(canvas) {
-            const imgData = canvas.toDataURL('image/png');
-            const pdf = new jsPDF({
-                orientation: 'portrait',
-              });
-              const imgProps= pdf.getImageProperties(imgData);
-              const pdfWidth = pdf.internal.pageSize.getWidth();
-              const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-              pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight-50);
-              pdf.save('download.pdf');
-        });
-      }
-    
+
+    handleSaveWorksheet = () => {
+        const { question } = this.state;
+        this.props.saveWorksheet(question)
+    }
+
+    handleWorksheetData = () => {
+        const { question } = this.state;
+        console.log('heeeeeeeeeeeeeeee', this.state.question)
+        this.props.worksheetData(question)
+    }
+
+    // printDocument = () => {
+    //     window.html2canvas = html2canvas;
+
+    //     let doc = new jsPDF();
+    //     let elWidth = document.querySelector('#divToPrint').offSetWidth;
+    //     doc.html(document.querySelector('#divToPrint'), {
+    //         html2canvas: {
+    //             width: elWidth
+    //         },
+    //         callback: function (doc) {
+    //             console.log(doc);
+    //             doc.save();
+    //         }
+    //     })
+    // }
+
 
 
 
     render() {
         const renderedEquations = this.state.question.map((e, i) => {
-            return <WorksheetData key={i} index={Number(i + 0)} equations={e.question} answer={e.answer} displayAnswers={this.state.displayAnswers}/>
+            return <WorksheetData key={i} index={Number(i + 0)} equations={e.question} answer={e.answer} displayAnswers={this.state.displayAnswers} />
         })
+        // console.log(this.props)
 
         return (
             <div>
+                <div className="savedQuestion-container">
+                    <SavedQuickQuestions />
+                </div>
                 <h1>Create a Worksheet</h1>
                 <form className='workshett-form'>
                     <div>
@@ -135,29 +153,34 @@ class WorksheetForm extends React.Component {
                 </form>
 
 
-                    <h1>Worksheet section....</h1>
-                    <Button
-                            variant="contained"
-                            onClick={this.handleClick}
-                            className="submit-btn"
-                            type="submit"
-                        >
-                            show answer
+                <h1>Worksheet section....</h1>
+                <Button
+                    variant="contained"
+                    onClick={this.handleClick}
+                    className="submit-btn"
+                    type="submit"
+                >
+                    show answer
             </Button>
-            <Button
-                            variant="contained"
-                            onClick={this.printDocument}
-                            className="submit-btn"
-                            type="submit"
-                        >
-                            download
+                <Button
+                    variant="contained"
+                    onClick={this.printDocument}
+                    className="submit-btn"
+                    type="submit"
+                >
+                    download
             </Button>
-                <div id= "divToPrint" className='Worksheet'>
-
+                <Button
+                    variant="contained"
+                    onClick={this.handleSaveWorksheet}
+                    className="submit-btn"
+                    type="submit"
+                >
+                    save
+            </Button>
+                <div id="divToPrint" className='Worksheet'>
                     <div className="equation-container">
-
                         {renderedEquations}
-
                     </div>
                 </div>
             </div>
@@ -165,4 +188,11 @@ class WorksheetForm extends React.Component {
     }
 }
 
-export default WorksheetForm;
+const mapStateToProps = (state) => {
+    return {
+        question: state.question
+    }
+}
+
+
+export default connect(mapStateToProps, { worksheetData })(WorksheetForm);

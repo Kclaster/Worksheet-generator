@@ -1,6 +1,7 @@
 import React from 'react';
 import './UserHome.css'
 import QuickQuestion from '../../../Features/QuickQuestion/QuickQuestion'
+import { connect } from 'react-redux'
 
 
 class UserHome extends React.Component{
@@ -19,5 +20,10 @@ class UserHome extends React.Component{
         )
     }
 }
+const mapStateToProps = (state) => {
+    return {
+        equations: state.equations
+    }
+}
 
-export default UserHome;
+export default  connect(mapStateToProps)(UserHome);

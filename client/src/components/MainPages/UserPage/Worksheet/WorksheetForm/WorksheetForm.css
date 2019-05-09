@@ -30,6 +30,15 @@
   
 }
 
+.savedQuestion-container{
+   border: 1px solid black;
+   float: right;
+   width: auto;
+   height: auto;
+   padding: 15px;
+   margin: 15px;
+}
+
 @media print {
     footer {page-break-after: always;}
   }

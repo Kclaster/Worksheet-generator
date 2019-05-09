@@ -1,7 +1,8 @@
 import React from 'react';
 import './QuickQuestion.css'
 import axios from 'axios';
-
+import {connect} from 'react-redux';
+import {helperSaveQuickQuestion} from '../../../redux/actions'
 
 class QuickQuestion extends React.Component {
     constructor() {
@@ -18,22 +19,26 @@ class QuickQuestion extends React.Component {
             .then(res => {
                 // console.log(res)
                 this.setState({ question: res.data })
+                
             })
     }
 
     componentDidMount() {
         this.getOneQuestion();
-
     }
 
     handleNewQuestion=()=>{
         this.getOneQuestion();
+}
+
+handleSavedQuickQuestion = () =>{
+    const { question, answer } = this.state.question;
+    this.props.helperSaveQuickQuestion({question, answer})
 
 }
 
 
     render() {
-        console.log(this.state.question)
         return (
             <div>
                     <h1>Quick Question</h1>
@@ -44,10 +49,16 @@ class QuickQuestion extends React.Component {
        Answer:{this.state.question && <h1>{this.state.question.answer}</h1>}
                 </div>
                 <button onClick={this.handleNewQuestion} >Update Equation</button>
-                <button >Save Equation</button>
+                <button onClick={this.handleSavedQuickQuestion}>Save Equation</button>
             </div>
         );
     }
 }
 
-export default QuickQuestion;
+const mapStateToProps = (state) => {
+    return {
+        question: state.question
+    }
+}
+
+export default connect(mapStateToProps, {helperSaveQuickQuestion})(QuickQuestion);
