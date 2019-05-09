@@ -1,125 +1,82 @@
-import React from 'react';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import './UserPref.css'
+import React from "react";
+import Button from "@material-ui/core/Button";
+import "./UserPref.css";
+// import Button from "../../../../../components/Buttons.js";
+import Typography from "@material-ui/core/Typography";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import FolderIcon from "@material-ui/icons/Folder";
 
+function generate(element) {
+  return [0, 1, 2, 3, 4].map(value =>
+    React.cloneElement(element, {
+      key: value
+    })
+  );
+}
 
 class UserPref extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            userName: '',
-            userEmail: '',
-            teachingLevel: '',
-            numberOfStudents: 0,
-        };
-    }
+  constructor() {
+    super();
+    this.state = {};
+  }
 
-    handleChange = event => {
-        const target = event.target.value;
-        const name = event.target.name;
-        this.setState({
-            [name]: target
-        });
-        console.log(name)
-    };
+  handleChange = event => {
+    const target = event.target.value;
+    const name = event.target.name;
+    this.setState({
+      [name]: target
+    });
+    console.log(name);
+  };
 
-    // handleSubmit = event => {
-    //     event.preventDefault();
-    //     let userid = this.props.userid;
-    //     let { userName, userEmail, teachingLevel, numberOfStudents } = this.state;
-    //     let post = {
-    //       userid,
-    //       userName,
-    //       userEmail,
-    //       teachingLevel,
-    //       numberOfStudents
-    //     };
-    //     this.props.updateUserPref(post);
-    //     saveUserPref(post);
-    //     this.setState({
-    //         userName: '',
-    //         userEmail: '',
-    //         teachingLevel: 0,
-    //         numberOfStudents: 0,
-    //     });
-    //   };
+  render() {
+    // const { classes } = this.props;
+    const { dense, secondary } = this.state;
 
-
-    render() {
-        return (
-            <div>
-                <h1>User Setting</h1>
-                <form className = 'user-settings'>
-                    <div className="userName">
-                        <TextField
-                            id="outlined-name"
-                            label="Name"
-                            name='userName'
-                            value={this.state.userName}
-                            onChange={this.handleChange}
-                            margin="normal"
-                            variant="outlined"
-                            fullWidth
-                        />
-                    </div>
-                    <div className="userEmail">
-                        <TextField
-                            id="outlined-name"
-                            label="Email"
-                            name='userEmail'
-                            value={this.state.userEmail}
-                            onChange={this.handleChange}
-                            margin="normal"
-                            variant="outlined"
-                            fullWidth
-                        />
-                    </div>
-                    <div className="teachingLevel">
-                        <TextField
-                            id="outlined-name"
-                            label=" What do you teach?"
-                            name= 'teachingLevel'
-                            value={this.state.teachingLevel}
-                            onChange={this.handleChange}
-                            margin="normal"
-                            variant="outlined"
-                            fullWidth
-                        />
-                    </div>
-                    <div className="numberOfStudents">
-                        <TextField
-                            id="outlined-number"
-                            label="Number of students?"
-                            name= 'numberOfStudents'
-                            value={this.state.numberOfStudents}
-                            onChange={this.handleChange}
-                            type="number"
-                            fullWidth
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                            margin="normal"
-                            variant="outlined"
-                        />
-                    </div>
-                    <div>
-                    <Button
-                variant="contained"
-                onClick={this.handleSubmit}
-                className="submit-btn"
-                type="submit"
-                value="Save"
-              >
-                Save
-            </Button>
-                    </div>
-
-
-                </form>
-            </div>
-        )
-    }
+    return (
+      <div className ='historyList'>
+        <Typography variant="h4" component="h4">
+          History
+        </Typography>
+        <List dense={dense}>
+          {generate(
+            <ListItem>
+              <ListItemIcon>
+                <FolderIcon />
+              </ListItemIcon>
+              <ListItemText
+                primary="Single-line item"
+                secondary={secondary ? "Secondary text" : null}
+              />
+            </ListItem>
+          )}
+        </List>
+        <div>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={this.handleSubmit}
+            className="submit-btn"
+            type="submit"
+          >
+            Preview
+          </Button>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={this.handleSubmit}
+            className="submit-btn"
+            type="submit"
+          >
+            Download
+          </Button>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default UserPref;

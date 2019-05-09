@@ -8,10 +8,13 @@
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "dependencies": {
-    "async": "^2.6.2",
     "axios": "^0.18.0",
     "bcrypt": "^3.0.6",
-    "body-parser": "^1.13.1",
+    "body-parser": "^1.19.0",
+    "async": "^2.6.2",
+    
+    
+    
     "connect-flash": "^0.1.1",
     "cookie-parser": "~1.4.3",
     "cors": "^2.8.5",
@@ -24,11 +27,22 @@
     "jade": "^1.11.0",
     "jsonwebtoken": "^8.5.1",
     "jwt-decode": "^2.2.0",
+<<<<<<< HEAD
+    "material-ui-icons": "^1.0.0-beta.36",
+    "morgan": "~1.9.0",
+    "mysql": "^2.17.1",
+    "mysql2": "^1.6.5",
+    "nodemon": "^1.19.0",
+    "react-particles-js": "^2.6.0",
+    "react-router-dom": "^5.0.0",
+    "sequelize": "^5.8.4"
+=======
     "morgan": "~1.9.0",
     "mysql": "^2.16.0",
     "mysql2": "^1.6.5",
     "nodemon": "^1.19.0",
     "react-router-dom": "^5.0.0",
     "sequelize": "^5.8.5"
+>>>>>>> 7e299993526ce86ce6e30a9fec578ae3defc91d6
   }
 }

@@ -50,7 +50,7 @@ class UserPage extends React.Component {
                         <Tabs value={value} onChange={this.handleChange}>
                             <Tab label="Home" />
                             <Tab label="Create a Worksheet" />
-                            <Tab label="Settings" />
+                            <Tab label="History" />
                         </Tabs>
                     </AppBar>
                     {value === 0 && <TabContainer><UserHome/></TabContainer>}

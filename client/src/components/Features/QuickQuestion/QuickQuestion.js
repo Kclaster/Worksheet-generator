@@ -1,3 +1,9 @@
+// import React from "react";
+// import axios from "axios";
+import Button from "@material-ui/core/Button";
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
+import Divider from '@material-ui/core/Divider';
 // External Dependencies
 import React from 'react';
 import { connect } from 'react-redux';
@@ -17,7 +23,6 @@ class QuickQuestion extends React.Component {
 
   getOneQuestion = () => {
     axios.get(`/slope_intercept/one?min=-0&max=30`).then(res => {
-      console.log(res);
       this.setState({ question: res.data });
     });
   };
