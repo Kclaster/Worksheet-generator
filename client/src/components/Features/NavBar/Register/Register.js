@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import { register } from "../UserFunctions/UserFunctions";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import TextField from "@material-ui/core/TextField";
 
 class Register extends Component {
   constructor() {
@@ -40,10 +43,18 @@ class Register extends Component {
         <div className="row">
           <div className="col-md-6 mt-5 mx-auto">
             <form noValidate onSubmit={this.onSubmit}>
-              <h1 className="h3 mb-3 font-weight-normal">Please Register and login</h1>
+              <Typography
+                variant="h4"
+                component="h4"
+                className="h3 mb-3 font-weight-normal"
+              >
+                Worksheet Generator Registration
+              </Typography>
               <div className="form-group">
-                <label htmlFor="first_name">First Name</label>
-                <input
+                {/* <label htmlFor="first_name">First Name</label> */}
+                <TextField
+                  // margin="normal"
+                  variant="filled"
                   type="text"
                   className="form-control"
                   name="first_name"
@@ -53,8 +64,11 @@ class Register extends Component {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="last_name">Last Name</label>
-                <input
+                {/* <label htmlFor="last_name">Last Name</label> */}
+                <TextField
+                  // margin="normal"
+                  variant="filled"
+                  type="text"
                   type="text"
                   className="form-control"
                   name="last_name"
@@ -64,8 +78,11 @@ class Register extends Component {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="email">Email Address</label>
-                <input
+                {/* <label htmlFor="email">Email Address</label> */}
+                <TextField
+                  // margin="normal"
+                  variant="filled"
+                  type="text"
                   type="email"
                   className="form-control"
                   name="email"
@@ -75,8 +92,11 @@ class Register extends Component {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="password">Password</label>
-                <input
+                {/* <label htmlFor="password">Password</label> */}
+                <TextField
+                  // margin="normal"
+                  variant="filled"
+                  type="text"
                   type="password"
                   className="form-control"
                   name="password"
@@ -85,12 +105,14 @@ class Register extends Component {
                   onChange={this.onChange}
                 />
               </div>
-              <button
+              <Button
                 type="submit"
+                variant="contained"
+                color="Secondary"
                 className="btn btn-lg btn-primary btn-block"
               >
                 Register
-              </button>
+              </Button>
             </form>
           </div>
         </div>

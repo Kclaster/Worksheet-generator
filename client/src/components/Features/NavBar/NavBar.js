@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import HomePage from "../../MainPages/HomePage/HomePage";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import "../NavBar/NavBar.css";
 
 class NavBarLogin extends Component {
   logOut(e) {
@@ -13,16 +16,16 @@ class NavBarLogin extends Component {
   render() {
     const loginRegLink = (
       <ul className="navbar-nav">
-        <li className="nav-item">
+        <Button variant="contained" color="primary" className="nav-item">
           <Link to="/login" className="nav-link">
             Login
           </Link>
-        </li>
-        <li className="nav-item">
+        </Button>
+        <Button variant="contained" color="primary" className="nav-item">
           <Link to="/register" className="nav-link">
             Register
           </Link>
-        </li>
+        </Button>
       </ul>
     );
     const userLink = (
@@ -48,11 +51,11 @@ class NavBarLogin extends Component {
             id="navbar1"
           >
             <ul className="navbar-nav">
-              <li className="nav-item">
+              <Button variant="contained" color="primary" className="nav-item">
                 <Link to="/" className="nav-link">
                   Home
                 </Link>
-              </li>
+              </Button>
             </ul>
             {localStorage.usertoken ? userLink : loginRegLink}
           </div>

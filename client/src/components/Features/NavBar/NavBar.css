@@ -38,3 +38,6 @@ ul.header li a {
 .content li {
   margin-bottom: 10px;
 }
+a.nav.link {
+  color:white;
+}

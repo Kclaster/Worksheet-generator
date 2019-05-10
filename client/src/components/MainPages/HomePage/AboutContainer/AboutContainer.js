@@ -7,7 +7,7 @@ class AboutContainer extends React.Component {
   render() {
     return (
       <Paper className="About">
-        <Typography variant="h3" component="h3">
+        <Typography variant="h5" component="h5">
           Please login to continue to the Worksheet Generator App!
         </Typography>
         <br></br>

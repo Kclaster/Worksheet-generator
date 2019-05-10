@@ -7,7 +7,7 @@ class HomePage extends React.Component{
     render(){
         return(
             
-            <div className='HomePage'><AboutContainer/></div>
+            <div className='HomePage'></div>
         )
     }
 }
