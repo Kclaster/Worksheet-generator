@@ -31,14 +31,15 @@
 }
 
 .savedQuestion-container{
-   border: 1px solid black;
+    box-shadow: 14px 12px 58px 0 rgba(46,30,183,.05);
    float: right;
-   width: auto;
-   height: auto;
+   width: 600px;
+   height: 200px;
    padding: 15px;
    margin: 15px;
+   overflow: auto;
 }
 
-@media print {
+/* @media print {
     footer {page-break-after: always;}
-  }
+  } */

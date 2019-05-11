@@ -1,6 +1,5 @@
 import React from 'react';
 import './WorksheetForm.css'
-// import MultipleSelect from './MultipleSelect'
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
@@ -10,6 +9,7 @@ import html2canvas from 'html2canvas'
 import SavedQuickQuestions from '../../../../Features/QuickQuestion/SavedQuickQuestions';
 import { saveWorksheet, worksheetData } from '../../../../../redux/actions';
 import { connect } from 'react-redux'
+
 
 
 class WorksheetForm extends React.Component {
@@ -35,19 +35,15 @@ class WorksheetForm extends React.Component {
 
 
     getEquations = () => {
-        return new Promise(resolve => axios
-            .get(`/slope_intercept?min=${this.state.min}&max=${this.state.max}&numOfQuestions=${this.state.numOfQuestions}`)
-            .then(res => {
-                console.log(res)
-                this.setState({ question: res.data });
-                resolve('resolved');
-            })
-        )
+        return axios.get(`/slope_intercept?min=${this.state.min}&max=${this.state.max}&numOfQuestions=${this.state.numOfQuestions}`)
     }
 
     handleEquations = (event) => {
         event.preventDefault()
-        this.getEquations().then(() => this.handleWorksheetData());
+        this.getEquations().then((response) => {
+            console.log(response.data);
+            this.props.worksheetData(response.data);
+        });
     }
 
     handleClick = () => {
@@ -60,11 +56,11 @@ class WorksheetForm extends React.Component {
         this.props.saveWorksheet(question)
     }
 
-    handleWorksheetData = () => {
-        const { question } = this.state;
-        console.log('heeeeeeeeeeeeeeee', this.state.question)
-        this.props.worksheetData(question)
-    }
+    // handleWorksheetData = () => {
+    //     const { question } = this.state;
+    //     console.log('heeeeeeeeeeeeeeee', this.state.question)
+    //     this.props.worksheetData(question)
+    // }
 
     // printDocument = () => {
     //     window.html2canvas = html2canvas;
@@ -86,10 +82,9 @@ class WorksheetForm extends React.Component {
 
 
     render() {
-        const renderedEquations = this.state.question.map((e, i) => {
-            return <WorksheetData key={i} index={Number(i + 0)} equations={e.question} answer={e.answer} displayAnswers={this.state.displayAnswers} />
-        })
-        // console.log(this.props)
+        // const renderedEquations = this.state.question.map((e, i) => {
+        //     return <WorksheetData key={i} index={Number(i + 0)} equations={e.question} answer={e.answer} displayAnswers={this.state.displayAnswers} />
+        // })
 
         return (
             <div>
@@ -151,8 +146,6 @@ class WorksheetForm extends React.Component {
             </Button>
                     </div>
                 </form>
-
-
                 <h1>Worksheet section....</h1>
                 <Button
                     variant="contained"
@@ -180,7 +173,15 @@ class WorksheetForm extends React.Component {
             </Button>
                 <div id="divToPrint" className='Worksheet'>
                     <div className="equation-container">
-                        {renderedEquations}
+                        {this.props.question.map((e, i) =>
+                            <WorksheetData
+                                key={i}
+                                index={Number(i + 0)}
+                                equations={e.question}
+                                answer={e.answer}
+                                displayAnswers={this.state.displayAnswers}
+                            />
+                        )}
                     </div>
                 </div>
             </div>
@@ -190,7 +191,7 @@ class WorksheetForm extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        question: state.question
+        question: state.worksheetData.data
     }
 }
 

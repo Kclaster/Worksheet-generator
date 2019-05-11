@@ -3,6 +3,7 @@ import './WorksheetForm';
 import './WorksheetData.css'
 
 
+
 const WorksheetData = (props) => {
     return <div className="equation-data">
         <h1>{Number(props.index + 1)}. {props.equations}</h1>

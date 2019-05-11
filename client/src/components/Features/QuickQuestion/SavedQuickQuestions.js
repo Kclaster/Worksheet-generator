@@ -5,9 +5,28 @@ import { connect } from 'react-redux';
 
 class SavedQuickQuestion extends React.Component {
 
-    renderList() {
+    // renderList() {
+    //     console.log(this.props.question)
+    //     return this.props.question.map((e) => {
+    //         return (
+    //             <div>
+    //                 <ul>
+    //                     <li>{e.question}</li>
+    //                     <li>{e.answer}</li>
+    //                     <button>Add</button>
+    //                 </ul>
+    //             </div>
+    //         );
+    //     });
+    // };
+
+
+    render() {
+
         console.log(this.props.question)
-        return this.props.question.map((e) => {
+        return (
+            <div>
+               {this.props.question.map((e) => {
             return (
                 <div>
                     <ul>
@@ -17,16 +36,7 @@ class SavedQuickQuestion extends React.Component {
                     </ul>
                 </div>
             );
-        });
-    };
-
-
-    render() {
-
-        console.log(this.props.question)
-        return (
-            <div>
-                {this.renderList()}
+        })}
             </div>
         );
     }
