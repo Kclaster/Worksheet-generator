@@ -1,6 +1,8 @@
+// Different from other login.js
+
 import React, { Component } from "react";
 import { login } from "../UserFunctions/UserFunctions";
-import UserPage from ".././../../MainPages/UserPage";
+import UserPage from "../../../MainPages/UserPage";
 import { withRouter } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";

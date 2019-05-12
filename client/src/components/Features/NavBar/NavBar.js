@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import HomePage from "../../MainPages/HomePage/HomePage";
 import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
+// import Typography from "@material-ui/core/Typography";
 import "../NavBar/NavBar.css";
 
 class NavBarLogin extends Component {

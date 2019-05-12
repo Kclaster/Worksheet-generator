@@ -8,7 +8,6 @@ import WorksheetData from "./WorksheetData";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import Typography from "@material-ui/core/Typography";
-import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 
 class WorksheetForm extends React.Component {
@@ -133,7 +132,6 @@ class WorksheetForm extends React.Component {
             <Button
               variant="contained"
               color="secondary"
-              variant="contained"
               onClick={this.handleEquations}
               className="submit-btn"
               type="submit"
@@ -143,14 +141,14 @@ class WorksheetForm extends React.Component {
             </Button>
           </div>
         </form>
-        <br></br><br></br>
+        <br />
+        <br />
         <Typography variant="h4" component="h4">
           WorkSheet Section
         </Typography>
         <Button
           variant="contained"
           color="secondary"
-          variant="contained"
           onClick={this.handleClick}
           className="submit-btn"
           type="submit"
@@ -160,7 +158,6 @@ class WorksheetForm extends React.Component {
         <Button
           variant="contained"
           color="secondary"
-          variant="contained"
           onClick={this.printDocument}
           className="submit-btn"
           type="submit"

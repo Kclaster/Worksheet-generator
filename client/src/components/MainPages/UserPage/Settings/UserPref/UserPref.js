@@ -1,7 +1,5 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
-import "./UserPref.css";
-// import Button from "../../../../../components/Buttons.js";
 import Typography from "@material-ui/core/Typography";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";

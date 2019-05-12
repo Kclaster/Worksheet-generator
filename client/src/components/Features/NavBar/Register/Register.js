@@ -54,7 +54,7 @@ class Register extends Component {
                 {/* <label htmlFor="first_name">First Name</label> */}
                 <TextField
                   // margin="normal"
-                  variant="filled"
+                  // variant="filled"
                   type="text"
                   className="form-control"
                   name="first_name"
@@ -66,9 +66,6 @@ class Register extends Component {
               <div className="form-group">
                 {/* <label htmlFor="last_name">Last Name</label> */}
                 <TextField
-                  // margin="normal"
-                  variant="filled"
-                  type="text"
                   type="text"
                   className="form-control"
                   name="last_name"
@@ -80,9 +77,6 @@ class Register extends Component {
               <div className="form-group">
                 {/* <label htmlFor="email">Email Address</label> */}
                 <TextField
-                  // margin="normal"
-                  variant="filled"
-                  type="text"
                   type="email"
                   className="form-control"
                   name="email"
@@ -94,9 +88,6 @@ class Register extends Component {
               <div className="form-group">
                 {/* <label htmlFor="password">Password</label> */}
                 <TextField
-                  // margin="normal"
-                  variant="filled"
-                  type="text"
                   type="password"
                   className="form-control"
                   name="password"
