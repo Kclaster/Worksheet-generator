@@ -5,20 +5,6 @@ import { connect } from 'react-redux';
 
 class SavedQuickQuestion extends React.Component {
 
-    // renderList() {
-    //     console.log(this.props.question)
-    //     return this.props.question.map((e) => {
-    //         return (
-    //             <div>
-    //                 <ul>
-    //                     <li>{e.question}</li>
-    //                     <li>{e.answer}</li>
-    //                     <button>Add</button>
-    //                 </ul>
-    //             </div>
-    //         );
-    //     });
-    // };
 
 
     render() {

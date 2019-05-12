@@ -2,8 +2,9 @@ import { WORKSHEET_DATA } from '../actions/types';
 
 const initialState = {
     data: [],
-    loading: true,
-    expandedIds: []
+    // loading: true,
+    // expandedIds: [],
+    displayAnswers: false,
 }
 
 export default function worksheetData(state = initialState, action) {
