@@ -39,8 +39,9 @@ What we need:
 		- how many routes we need
 		- Using redux
 
-
-
+	- Filters
+	    - Must guarantee never getting the same question more than Math.floor 8% of the time.
+		
 
 ## PLease add to the list below 
 
@@ -54,3 +55,6 @@ Version 2
 Version 3
 	- Grading with QR
 	- Data Visualization 
+	- multiple worksheets should distribute answers evenly within a range (ie. x=0 should only appear once per worksheet)
+
+
