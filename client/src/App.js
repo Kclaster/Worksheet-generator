@@ -1,6 +1,5 @@
 import Footer from "./components/Features/Footer/Footer.js";
 import ParticlesCustom from "./components/Particles";
-import AboutContainer from "./components/MainPages/HomePage/AboutContainer/AboutContainer";
 import React, { Component } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import Landing from "./components/Landing";
@@ -22,7 +21,6 @@ class App extends Component {
               <Route exact path="/Register" component={Register} />
               <Route exact path="/profile" component={Profile} />
             </div>
-            <AboutContainer />
             <Footer />
             <ParticlesCustom />
           </div>

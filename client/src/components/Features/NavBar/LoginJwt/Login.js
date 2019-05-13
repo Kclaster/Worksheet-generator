@@ -45,7 +45,13 @@ class Login extends Component {
         <div className="row">
           <div className="col-md-6 mt-5 mx-auto">
             <form noValidate onSubmit={this.onSubmit}>
-              <Typography variant="h4" component="h4" className="h3 mb-3 font-weight-normal">Please sign in</Typography>
+              <Typography
+                variant="h4"
+                component="h4"
+                className="h3 mb-3 font-weight-normal"
+              >
+                Please sign in
+              </Typography>
               <div className="form-group">
                 {/* <label htmlFor="email">Email Address</label> */}
                 <TextField

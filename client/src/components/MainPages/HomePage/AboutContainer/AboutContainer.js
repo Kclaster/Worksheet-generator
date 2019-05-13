@@ -7,6 +7,9 @@ class AboutContainer extends React.Component {
     return (
       <Paper className="About">
         <br />
+        <Typography component="h2" variant="h2">
+        Welcome to Worksheet Generator
+        </Typography>
         <Typography component="p" variant="p">
           This app was built for the time-strapped teacher. The type of teacher
           who wants to do more than asked but is confined by time. With our

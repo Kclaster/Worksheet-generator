@@ -1,17 +1,16 @@
 // import React from "react";
 // import axios from "axios";
-// import Button from "@material-ui/core/Button";
-// import Paper from "@material-ui/core/Paper";
-// import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
 // import Divider from '@material-ui/core/Divider';
 // External Dependencies
-import React from 'react';
-import { connect } from 'react-redux';
-import axios from 'axios';
+import React from "react";
+import { connect } from "react-redux";
+import axios from "axios";
 
 // Internal Dependencies
-import './QuickQuestion.css';
-import { setSavedQuestion } from '../../redux/actionCreators';
+import { setSavedQuestion } from "../../redux/actionCreators";
 
 class QuickQuestion extends React.Component {
   constructor() {
@@ -43,14 +42,34 @@ class QuickQuestion extends React.Component {
     console.log(this.state.question);
     return (
       <div>
-        <h1>Quick Question</h1>
-        <div className="quickQuestions-container">
-          Equation:
+        <Typography variant="h4" component="h4">
+          Quick Question
+        </Typography>
+        <Paper className="quickQuestions-container">
+          <Typography variant="p" component="p">
+            Equation:
+          </Typography>
           {this.state.question && <h1>{this.state.question.question}</h1>}
-          Answer:{this.state.question && <h1>{this.state.question.answer}</h1>}
-        </div>
-        <button onClick={this.handleNewQuestion}>Update Equation</button>
-        <button onClick={this.handleClickSaveButton}>Save Equation</button>
+          <Typography variant="p" component="p">
+            Answer:
+          </Typography>
+          {this.state.question && <h1>{this.state.question.answer}</h1>}
+        </Paper>
+        <br></br>
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={this.handleNewQuestion}
+        >
+          Update Equation
+        </Button>
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={this.handleClickSaveButton}
+        >
+          Save Equation
+        </Button>
       </div>
     );
   }
