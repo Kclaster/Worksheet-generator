@@ -8,7 +8,7 @@ export const helperSaveQuickQuestion = (question) => {
 }
 
 export const saveWorksheet = (equations) =>{
-    console.log('poop', equations)
+    console.log('saveworksheet actions', equations)
     return {
         type: WORKSHEET_SAVER,
         payload: equations
@@ -17,7 +17,7 @@ export const saveWorksheet = (equations) =>{
 }
 
 export const worksheetData = (question) =>{
-    console.log('poop', question)
+    console.log('woksheetdata action', question)
     return {
         type: WORKSHEET_DATA,
         payload: question
