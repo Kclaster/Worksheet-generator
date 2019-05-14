@@ -16,13 +16,23 @@ class NavBarLogin extends Component {
   render() {
     const loginRegLink = (
       <ul className="navbar-nav">
-        <Button variant="contained" color="primary" className="nav-item">
-          <Link to="/login" className="nav-link">
+        <Button variant="contained"className="nav-item">
+          <Link
+            to="/login"
+            className="nav-link"
+            component="button"
+            variant="body2"
+          >
             Login
           </Link>
         </Button>
-        <Button variant="contained" color="primary" className="nav-item">
-          <Link to="/register" className="nav-link">
+        <Button variant="contained" className="nav-item">
+          <Link
+            to="/register"
+            className="nav-link"
+            component="button"
+            variant="body2"
+          >
             Register
           </Link>
         </Button>
@@ -30,12 +40,17 @@ class NavBarLogin extends Component {
     );
     const userLink = (
       <ul className="navbar-nav">
-        <Button variant="contained" color="primary" className="nav-item">
-          <Link to="/profile" className="nav-link">
+        <Button variant="contained" className="nav-item">
+          <Link
+            to="/profile"
+            className="nav-link"
+            component="button"
+            variant="body2"
+          >
             User
           </Link>
         </Button>
-        <Button variant="contained" color="primary" className="nav-item">
+        <Button variant="contained"  className="nav-item">
           <a href="" onClick={this.logOut.bind(this)} className="nav-link">
             Logout
           </a>
@@ -51,7 +66,7 @@ class NavBarLogin extends Component {
             id="navbar1"
           >
             <ul className="navbar-nav">
-              <Button variant="contained" color="primary" className="nav-item">
+              <Button variant="contained" className="nav-item">
                 <Link to="/" className="nav-link">
                   Home
                 </Link>
