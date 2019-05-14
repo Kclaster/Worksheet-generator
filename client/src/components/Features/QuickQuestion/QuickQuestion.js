@@ -1,16 +1,11 @@
-// import React from "react";
-// import axios from "axios";
+
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
-// import Divider from '@material-ui/core/Divider';
-// External Dependencies
-import React from "react";
-import { connect } from "react-redux";
-import axios from "axios";
-
-// Internal Dependencies
-import { setSavedQuestion } from "../../redux/actionCreators";
+import React from 'react';
+import { connect } from 'react-redux';
+import axios from 'axios';
+import {helperSaveQuickQuestion} from '../../../redux/actions'
 
 class QuickQuestion extends React.Component {
   constructor() {
@@ -21,22 +16,23 @@ class QuickQuestion extends React.Component {
   }
 
   getOneQuestion = () => {
-    axios.get(`/slope_intercept/one?min=-0&max=30`).then(res => {
+    axios.get(`/slope_intercept/one?min=0&max=30`).then(res => {
       this.setState({ question: res.data });
     });
   };
 
-  componentDidMount() {
-    this.getOneQuestion();
-  }
+    componentDidMount() {
+        this.getOneQuestion();
+    }
 
-  handleNewQuestion = () => {
-    this.getOneQuestion();
-  };
+    handleNewQuestion=()=>{
+        this.getOneQuestion();
+}
 
-  handleClickSaveButton = () => {
-    this.props.setSavedQuestion(this.state.question);
-  };
+handleSavedQuickQuestion = () =>{
+  const { question, answer } = this.state.question;
+  this.props.helperSaveQuickQuestion({question, answer})
+}
 
   render() {
     console.log(this.state.question);
@@ -72,16 +68,15 @@ class QuickQuestion extends React.Component {
         </Button>
       </div>
     );
-  }
+
+    
+}
 }
 
-const mapStateToProps = state => {
-  return {
-    questions: state.savedQuestions
-  };
-};
+const mapStateToProps = (state) => {
+    return {
+        question: state.question
+    }
+}
 
-export default connect(
-  mapStateToProps,
-  { setSavedQuestion }
-)(QuickQuestion);
+export default connect(mapStateToProps, {helperSaveQuickQuestion})(QuickQuestion);

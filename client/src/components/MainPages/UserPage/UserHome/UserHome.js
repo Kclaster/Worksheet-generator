@@ -1,6 +1,7 @@
 import React from "react";
-// import "./UserHome.css";
+import "./UserHome.css";
 import QuickQuestion from "../../../Features/QuickQuestion/QuickQuestion";
+import { connect } from "react-redux";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 // import Grid from "@material-ui/core/Grid";
@@ -18,7 +19,7 @@ class UserHome extends React.Component {
             Equation History:
           </Typography>
         </Paper>
-        <br></br>
+        <br />
         <div>
           <QuickQuestion />
         </div>
@@ -26,5 +27,10 @@ class UserHome extends React.Component {
     );
   }
 }
+const mapStateToProps = state => {
+  return {
+    equations: state.equations
+  };
+};
 
-export default UserHome;
+export default connect(mapStateToProps)(UserHome);

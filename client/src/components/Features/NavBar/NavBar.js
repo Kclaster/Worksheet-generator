@@ -2,8 +2,12 @@ import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import HomePage from "../../MainPages/HomePage/HomePage";
 import Button from "@material-ui/core/Button";
+import styled from 'styled-components';
 // import Typography from "@material-ui/core/Typography";
 import "../NavBar/NavBar.css";
+
+const Wrapper = styled.ul`
+display: flex;`
 
 class NavBarLogin extends Component {
   logOut(e) {
@@ -15,7 +19,7 @@ class NavBarLogin extends Component {
 
   render() {
     const loginRegLink = (
-      <ul className="navbar-nav">
+      <div>
         <Button variant="contained"className="nav-item">
           <Link
             to="/login"
@@ -23,7 +27,7 @@ class NavBarLogin extends Component {
             component="button"
             variant="body2"
           >
-            Login
+            LOGIN
           </Link>
         </Button>
         <Button variant="contained" className="nav-item">
@@ -33,13 +37,13 @@ class NavBarLogin extends Component {
             component="button"
             variant="body2"
           >
-            Register
+            REGISTER
           </Link>
         </Button>
-      </ul>
+        </div>
     );
     const userLink = (
-      <ul className="navbar-nav">
+      <div>
         <Button variant="contained" className="nav-item">
           <Link
             to="/profile"
@@ -47,15 +51,15 @@ class NavBarLogin extends Component {
             component="button"
             variant="body2"
           >
-            User
+            CLICK TO START
           </Link>
         </Button>
         <Button variant="contained"  className="nav-item">
           <a href="" onClick={this.logOut.bind(this)} className="nav-link">
-            Logout
+            LOGOUT
           </a>
         </Button>
-      </ul>
+        </div>
     );
 
     return (
@@ -65,18 +69,16 @@ class NavBarLogin extends Component {
             className="collapse navbar-collapse justify-content-md-center"
             id="navbar1"
           >
-            <ul className="navbar-nav">
+            <Wrapper className="navbar-nav">
               <Button variant="contained" className="nav-item">
                 <Link to="/" className="nav-link">
                   Home
                 </Link>
               </Button>
-            </ul>
             {localStorage.usertoken ? userLink : loginRegLink}
+            </Wrapper>
           </div>
         </nav>
-
-        {/* home page */}
         <HomePage />
       </div>
     );

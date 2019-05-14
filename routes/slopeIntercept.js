@@ -86,9 +86,11 @@ router.get('/', async function(req, res) {
 // });
 
 router.get('/one', async function(req, res) {
-  let query = Number(req.query);
+  console.log('pee', req.query.max, req.query.min);
+  let query = req.query;
   let max = Number(query.max);
   let min = Number(query.min);
+  console.log('akunaaaaaaaa', max, min);
   connection.query(
     'SELECT * FROM slope_intercept_both WHERE max <= ? AND min >= ?',
     [max, min],

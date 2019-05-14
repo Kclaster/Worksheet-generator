@@ -5,10 +5,11 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import axios from "axios";
 import WorksheetData from "./WorksheetData";
-import jsPDF from "jspdf";
-import html2canvas from "html2canvas";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
+import SavedQuickQuestions from "../../../../Features/QuickQuestion/SavedQuickQuestions";
+import { worksheetData } from "../../../../../redux/actions";
+import { connect } from "react-redux";
 
 class WorksheetForm extends React.Component {
   constructor() {
@@ -32,59 +33,38 @@ class WorksheetForm extends React.Component {
   };
 
   getEquations = () => {
-    axios
-      .get(
-        `/slope_intercept?min=${this.state.min}&max=${
-          this.state.max
-        }&numOfQuestions=${this.state.numOfQuestions}`
-      )
-      .then(res => {
-        console.log(res);
-        this.setState({ question: res.data });
-      });
+    return axios.get(
+      `/slope_intercept?min=${this.state.min}&max=${
+        this.state.max
+      }&numOfQuestions=${this.state.numOfQuestions}`
+    );
   };
 
   handleEquations = event => {
     event.preventDefault();
-
-    this.getEquations();
+    this.getEquations().then(response => {
+      console.log(response.data);
+      this.props.worksheetData(response.data);
+    });
   };
 
   handleClick = () => {
     this.setState({ displayAnswers: !this.state.displayAnswers });
   };
 
-  printDocument = () => {
-    html2canvas(document.querySelector("#divToPrint")).then(function(canvas) {
-      const imgData = canvas.toDataURL("image/png");
-      const pdf = new jsPDF({
-        orientation: "portrait"
-      });
-      const imgProps = pdf.getImageProperties(imgData);
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-      pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight - 50);
-      pdf.save("download.pdf");
-    });
+  handleSaveWorksheet = () => {
+    const { question } = this.state;
+    this.props.saveWorksheet(question);
   };
 
   render() {
-    const renderedEquations = this.state.question.map((e, i) => {
-      return (
-        <WorksheetData
-          key={i}
-          index={Number(i + 0)}
-          equations={e.question}
-          answer={e.answer}
-          displayAnswers={this.state.displayAnswers}
-        />
-      );
-    });
-
     return (
       <div>
+        <div className="savedQuestion-container">
+          <SavedQuickQuestions />
+        </div>
         <Typography variant="h4" component="h4">
-          Create A Worksheet
+          Create a Worksheet
         </Typography>
         <form className="workshett-form">
           <div>
@@ -142,7 +122,7 @@ class WorksheetForm extends React.Component {
           </div>
         </form>
         <br />
-        <br />
+
         <Typography variant="h4" component="h4">
           WorkSheet Section
         </Typography>
@@ -165,10 +145,19 @@ class WorksheetForm extends React.Component {
           Download
         </Button>
 
-        {/* Remove grid if issues */}
         <Grid item xs={12}>
           <div id="divToPrint" className="Worksheet">
-            <div className="equation-container">{renderedEquations}</div>
+            <div className="equation-container">
+              {this.props.question.map((e, i) => (
+                <WorksheetData
+                  key={i}
+                  index={Number(i + 0)}
+                  equations={e.question}
+                  answer={e.answer}
+                  displayAnswers={this.state.displayAnswers}
+                />
+              ))}
+            </div>
           </div>
         </Grid>
       </div>
@@ -176,4 +165,13 @@ class WorksheetForm extends React.Component {
   }
 }
 
-export default WorksheetForm;
+const mapStateToProps = state => {
+  return {
+    question: state.worksheetData.data
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { worksheetData }
+)(WorksheetForm);
