@@ -1,27 +1,27 @@
+
+import Button from "@material-ui/core/Button";
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
+import Divider from '@material-ui/core/Divider';
+// External Dependencies
 import React from 'react';
-import './QuickQuestion.css'
+import { connect } from 'react-redux';
 import axios from 'axios';
-import {connect} from 'react-redux';
 import {helperSaveQuickQuestion} from '../../../redux/actions'
 
 class QuickQuestion extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            question: null
-        }
-    }
+  constructor() {
+    super();
+    this.state = {
+      question: null
+    };
+  }
 
-    getOneQuestion =() =>{
-
-        axios
-            .get(`/slope_intercept/one?min=-0&max=30`)
-            .then(res => {
-                // console.log(res)
-                this.setState({ question: res.data })
-                
-            })
-    }
+  getOneQuestion = () => {
+    axios.get(`/slope_intercept/one?min=0&max=30`).then(res => {
+      this.setState({ question: res.data });
+    });
+  };
 
     componentDidMount() {
         this.getOneQuestion();
@@ -34,10 +34,7 @@ class QuickQuestion extends React.Component {
 handleSavedQuickQuestion = () =>{
     const { question, answer } = this.state.question;
     this.props.helperSaveQuickQuestion({question, answer})
-
-}
-
-
+  }
     render() {
         return (
             <div>
