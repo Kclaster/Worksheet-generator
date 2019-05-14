@@ -2,8 +2,6 @@
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
-import Divider from '@material-ui/core/Divider';
-// External Dependencies
 import React from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
@@ -32,24 +30,47 @@ class QuickQuestion extends React.Component {
 }
 
 handleSavedQuickQuestion = () =>{
-    const { question, answer } = this.state.question;
-    this.props.helperSaveQuickQuestion({question, answer})
-  }
-    render() {
-        return (
-            <div>
-                    <h1>Quick Question</h1>
-                <div className="quickQuestions-container">
-     Equation:
-       {this.state.question && <h1>{this.state.question.question}</h1>}
+  const { question, answer } = this.state.question;
+  this.props.helperSaveQuickQuestion({question, answer})
+}
 
-       Answer:{this.state.question && <h1>{this.state.question.answer}</h1>}
-                </div>
-                <button onClick={this.handleNewQuestion} >Update Equation</button>
-                <button onClick={this.handleSavedQuickQuestion}>Save Equation</button>
-            </div>
-        );
-    }
+  render() {
+    console.log(this.state.question);
+    return (
+      <div>
+        <Typography variant="h4" component="h4">
+          Quick Question
+        </Typography>
+        <Paper className="quickQuestions-container">
+          <Typography variant="p" component="p">
+            Equation:
+          </Typography>
+          {this.state.question && <h1>{this.state.question.question}</h1>}
+          <Typography variant="p" component="p">
+            Answer:
+          </Typography>
+          {this.state.question && <h1>{this.state.question.answer}</h1>}
+        </Paper>
+        <br></br>
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={this.handleNewQuestion}
+        >
+          Update Equation
+        </Button>
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={this.handleClickSaveButton}
+        >
+          Save Equation
+        </Button>
+      </div>
+    );
+
+    
+}
 }
 
 const mapStateToProps = (state) => {
