@@ -11,6 +11,14 @@ USE `slope_intercept`;
                 `answer` varchar(40) NOT NULL,
                 PRIMARY KEY (`id`)
                 ); 
+       CREATE TABLE `users` (
+                `id` INT NOT NULL AUTO_INCREMENT,
+                `first_name` VARCHAR(45) NULL,
+                `last_name` VARCHAR(45) NULL,
+                `email` VARCHAR(255) NULL,
+                `password` VARCHAR(255) NULL,
+                `created` DATE NULL,
+                PRIMARY KEY (`id`));
       
 
     Select * FROM slope_intercept_both;
