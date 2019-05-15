@@ -7,7 +7,8 @@ import styled from 'styled-components';
 import "../NavBar/NavBar.css";
 
 const Wrapper = styled.ul`
-display: flex;`
+display: flex;
+margin-left: -40px;`
 
 class NavBarLogin extends Component {
   logOut(e) {
