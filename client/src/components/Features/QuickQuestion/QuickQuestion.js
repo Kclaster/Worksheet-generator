@@ -1,16 +1,12 @@
-// import React from "react";
-// import axios from "axios";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
-// import Divider from '@material-ui/core/Divider';
+import Divider from '@material-ui/core/Divider';
 // External Dependencies
-import React from "react";
-import { connect } from "react-redux";
-import axios from "axios";
-
-// Internal Dependencies
-import { setSavedQuestion } from "../../redux/actionCreators";
+import React from 'react';
+import { connect } from 'react-redux';
+import axios from 'axios';
+import {helperSaveQuickQuestion} from '../../../redux/actions'
 
 class QuickQuestion extends React.Component {
   constructor() {
@@ -21,22 +17,23 @@ class QuickQuestion extends React.Component {
   }
 
   getOneQuestion = () => {
-    axios.get(`/slope_intercept/one?min=-0&max=30`).then(res => {
+    axios.get(`/slope_intercept/one?min=0&max=30`).then(res => {
       this.setState({ question: res.data });
     });
   };
 
-  componentDidMount() {
-    this.getOneQuestion();
+    componentDidMount() {
+        this.getOneQuestion();
+    }
+
+    handleNewQuestion=()=>{
+        this.getOneQuestion();
+}
+
+handleSavedQuickQuestion = () =>{
+    const { question, answer } = this.state.question;
+    this.props.helperSaveQuickQuestion({question, answer})
   }
-
-  handleNewQuestion = () => {
-    this.getOneQuestion();
-  };
-
-  handleClickSaveButton = () => {
-    this.props.setSavedQuestion(this.state.question);
-  };
 
   render() {
     console.log(this.state.question);
@@ -55,7 +52,7 @@ class QuickQuestion extends React.Component {
           </Typography>
           {this.state.question && <h1>{this.state.question.answer}</h1>}
         </Paper>
-        <br></br>
+        <br />
         <Button
           variant="contained"
           color="secondary"
@@ -66,7 +63,7 @@ class QuickQuestion extends React.Component {
         <Button
           variant="contained"
           color="secondary"
-          onClick={this.handleClickSaveButton}
+          onClick={this.handleSavedQuickQuestion}
         >
           Save Equation
         </Button>
@@ -77,11 +74,11 @@ class QuickQuestion extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    questions: state.savedQuestions
+    questions: state.questions
   };
 };
 
 export default connect(
   mapStateToProps,
-  { setSavedQuestion }
+  { helperSaveQuickQuestion }
 )(QuickQuestion);
