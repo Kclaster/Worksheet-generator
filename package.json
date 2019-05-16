@@ -8,10 +8,10 @@
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "dependencies": {
+    "async": "^2.6.2",
     "axios": "^0.18.0",
     "bcrypt": "^3.0.6",
     "body-parser": "^1.19.0",
-    "async": "^2.6.2",
     "connect-flash": "^0.1.1",
     "cookie-parser": "~1.4.3",
     "cors": "^2.8.5",
