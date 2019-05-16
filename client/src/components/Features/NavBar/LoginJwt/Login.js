@@ -35,6 +35,8 @@ class Login extends Component {
     login(user).then(res => {
       if (res) {
         this.props.history.push(<UserPage />);
+        //if a user Login success and return to Home page ('/').
+        this.props.history.push("/");
       }
     });
   }
@@ -82,6 +84,7 @@ class Login extends Component {
               >
                 Sign in
               </Button>
+       
             </form>
           </div>
         </div>
