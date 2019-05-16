@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import jwt_decode from "jwt-decode";
 import UserPage from "../../MainPages/UserPage";
-import Typography from "@material-ui/core/Typography";
-import Paper from "@material-ui/core/Paper";
 
 class Profile extends Component {
   constructor() {
@@ -27,35 +25,7 @@ class Profile extends Component {
   render() {
     return (
       <div className="jumbotron mt-5">
-        <div className="col-sm-8 mx-auto">
-        <Paper>
-          <Typography variant="h4" component="h4" className="text-center">
-            PROFILE
-          </Typography>
-
-          <tbody>
-            <Typography variant="p" component="p">
-              <tr>
-                <td>First Name:</td>
-                <br />
-                <td>{this.state.first_name}</td>
-              </tr>
-              <tr>
-                <td>Last Name:</td>
-                <br />
-                <td>{this.state.last_name}</td>
-              </tr>
-              <tr>
-                <td>Email:</td>
-                <br />
-                <td>{this.state.email}</td>
-              </tr>
-            </Typography>
-          </tbody>
-          </Paper>
-          <br></br>
-          <UserPage />
-        </div>
+        <UserPage />
       </div>
     );
   }

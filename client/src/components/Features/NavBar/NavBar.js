@@ -2,13 +2,23 @@ import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import HomePage from "../../MainPages/HomePage/HomePage";
 import Button from "@material-ui/core/Button";
-import styled from 'styled-components';
-// import Typography from "@material-ui/core/Typography";
+import styled from "styled-components";
 import "../NavBar/NavBar.css";
+import { createMuiTheme } from '@material-ui/core/styles';
+
+
+const theme = createMuiTheme();
+console.log(theme);
 
 const Wrapper = styled.ul`
-display: flex;
-margin-left: -40px;`
+  display: flex;
+  margin-left: -40px;
+`;
+
+const StyledLink = styled('nav-link')`
+  height: 40px;
+  font-weight: bold;
+`;
 
 class NavBarLogin extends Component {
   logOut(e) {
@@ -21,7 +31,7 @@ class NavBarLogin extends Component {
   render() {
     const loginRegLink = (
       <div>
-        <Button variant="contained"className="nav-item">
+        <Button variant="contained" color="secondary" className="nav-item">
           <Link
             to="/login"
             className="nav-link"
@@ -31,7 +41,7 @@ class NavBarLogin extends Component {
             LOGIN
           </Link>
         </Button>
-        <Button variant="contained" className="nav-item">
+        <Button variant="contained" color="secondary" className="nav-item">
           <Link
             to="/register"
             className="nav-link"
@@ -41,11 +51,11 @@ class NavBarLogin extends Component {
             REGISTER
           </Link>
         </Button>
-        </div>
+      </div>
     );
     const userLink = (
       <div>
-        <Button variant="contained" className="nav-item">
+        <Button variant="contained" color="secondary" className="nav-item">
           <Link
             to="/profile"
             className="nav-link"
@@ -55,12 +65,12 @@ class NavBarLogin extends Component {
             CLICK TO START
           </Link>
         </Button>
-        <Button variant="contained"  className="nav-item">
+        <Button variant="contained" color="secondary" className="nav-item">
           <a href="" onClick={this.logOut.bind(this)} className="nav-link">
             LOGOUT
           </a>
         </Button>
-        </div>
+      </div>
     );
 
     return (
@@ -70,14 +80,20 @@ class NavBarLogin extends Component {
             className="collapse navbar-collapse justify-content-md-center"
             id="navbar1"
           >
-            <Wrapper className="navbar-nav">
-              <Button variant="contained" className="nav-item">
-                <Link to="/" className="nav-link">
-                  Home
-                </Link>
-              </Button>
-            {localStorage.usertoken ? userLink : loginRegLink}
-            </Wrapper>
+            <StyledLink>
+              <Wrapper className="navbar-nav">
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  className="nav-item"
+                >
+                  <Link to="/" className="nav-link">
+                    Home
+                  </Link>
+                </Button>
+                {localStorage.usertoken ? userLink : loginRegLink}
+              </Wrapper>
+            </StyledLink>
           </div>
         </nav>
         <HomePage />

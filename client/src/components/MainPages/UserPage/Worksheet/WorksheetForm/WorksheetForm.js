@@ -1,6 +1,5 @@
 import React from "react";
 import "./WorksheetForm.css";
-// import MultipleSelect from './MultipleSelect'
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import axios from "axios";
@@ -10,6 +9,10 @@ import Grid from "@material-ui/core/Grid";
 import SavedQuickQuestions from "../../../../Features/QuickQuestion/SavedQuickQuestions";
 import { worksheetData } from "../../../../../redux/actions";
 import { connect } from "react-redux";
+import styled from "styled-components";
+
+const Wrapper = styled.div`
+`;
 
 class WorksheetForm extends React.Component {
   constructor() {
@@ -60,9 +63,6 @@ class WorksheetForm extends React.Component {
   render() {
     return (
       <div>
-        <div className="savedQuestion-container">
-          <SavedQuickQuestions />
-        </div>
         <Typography variant="h4" component="h4">
           Create a Worksheet
         </Typography>
@@ -121,8 +121,12 @@ class WorksheetForm extends React.Component {
             </Button>
           </div>
         </form>
+        <Grid>
+            <div className="savedQuestion-container">
+              <SavedQuickQuestions />
+            </div>
+        </Grid>
         <br />
-
         <Typography variant="h4" component="h4">
           WorkSheet Section
         </Typography>
@@ -144,22 +148,26 @@ class WorksheetForm extends React.Component {
         >
           Download
         </Button>
-
-        <Grid item xs={12}>
-          <div id="divToPrint" className="Worksheet">
-            <div className="equation-container">
-              {this.props.question.map((e, i) => (
-                <WorksheetData
-                  key={i}
-                  index={Number(i + 0)}
-                  equations={e.question}
-                  answer={e.answer}
-                  displayAnswers={this.state.displayAnswers}
-                />
-              ))}
+        <div>
+        <Wrapper>
+          <Grid>
+            <div id="divToPrint" className="Worksheet">
+              <div className="equation-container">
+                {this.props.question.map((e, i) => (
+                  <WorksheetData
+                    key={i}
+                    index={Number(i + 0)}
+                    equations={e.question}
+                    answer={e.answer}
+                    displayAnswers={this.state.displayAnswers}
+                  />
+                ))}
+              </div>
             </div>
-          </div>
-        </Grid>
+          </Grid>
+
+        </Wrapper>
+        </div>
       </div>
     );
   }

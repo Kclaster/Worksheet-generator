@@ -1,7 +1,7 @@
 import React from 'react';
-import './QuickQuestion.css'
-import axios from 'axios';
+// import axios from 'axios';
 import { connect } from 'react-redux';
+
 
 class SavedQuickQuestion extends React.Component {
 

@@ -6,6 +6,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import FolderIcon from "@material-ui/icons/Folder";
+import HistoryWorksheetForm from '../../Worksheet/WorksheetForm/HistoryWorksheet'
 
 function generate(element) {
   return [0, 1, 2, 3, 4].map(value =>
@@ -72,6 +73,7 @@ class UserPref extends React.Component {
             Download
           </Button>
         </div>
+        <HistoryWorksheetForm />
       </div>
     );
   }
