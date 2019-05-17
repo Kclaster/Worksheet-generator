@@ -1,1 +1,0 @@
-export const SAVED_QUESTION = 'SAVED_QUESTIONS';

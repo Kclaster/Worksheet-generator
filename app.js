@@ -7,24 +7,24 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 // var standardFormRouter = require('./routes/standardForm');
 var slopeInterceptRouter = require('./routes/slopeIntercept');
+var worsheetHistory = require('./routes/worksheetHistory');
 
 var app = express();
 
-var express = require("express")
-var cors = require("cors")
-var bodyParser = require("body-parser")
+var express = require('express');
+var cors = require('cors');
+var bodyParser = require('body-parser');
 var port = process.env.PORT || 5000;
 
 app.use(bodyParser.json());
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-
-var Users = require('./routes/Users')
-app.use('/users', Users)
+var Users = require('./routes/Users');
+app.use('/users', Users);
 app.listen(port, () => {
-    console.log("Server is running on port: " + port)
-})
+  console.log('Server is running on port: ' + port);
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -41,6 +41,7 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.use('/', indexRouter);
 app.use('/slope_intercept', slopeInterceptRouter);
+app.use('/worksheets', worsheetHistory);
 // app.use('/standard_form', standardFormRouter);
 
 app.get('*', (req, res) => {

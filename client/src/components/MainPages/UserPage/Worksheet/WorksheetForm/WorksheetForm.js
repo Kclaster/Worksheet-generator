@@ -1,5 +1,5 @@
 import React from 'react';
-import './WorksheetForm.css'
+import './WorksheetForm.css';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
@@ -8,8 +8,7 @@ import WorksheetData from './WorksheetData';
 // import html2canvas from 'html2canvas'
 import SavedQuickQuestions from '../../../../Features/QuickQuestion/SavedQuickQuestions';
 import { saveWorksheet, worksheetData } from '../../../../../redux/actions';
-import { connect } from 'react-redux'
-
+import { connect } from 'react-redux';
 
 // import React from "react";
 // import "./WorksheetForm.css";
@@ -28,9 +27,9 @@ class WorksheetForm extends React.Component {
   constructor() {
     super();
     this.state = {
-      max: 0,
+      max: 30,
       min: 0,
-      numOfQuestions: 0,
+      numOfQuestions: 10,
       question: [],
       displayAnswers: false
     };
@@ -45,173 +44,178 @@ class WorksheetForm extends React.Component {
     console.log(name);
   };
 
+  getEquations = () => {
+    return axios.get(
+      `/slope_intercept?min=${this.state.min}&max=${
+        this.state.max
+      }&numOfQuestions=${this.state.numOfQuestions}`
+    );
+  };
 
-    getEquations = () => {
-      return axios.get(`/slope_intercept?min=${this.state.min}&max=${this.state.max}&numOfQuestions=${this.state.numOfQuestions}`)
-    }
+  handleEquations = event => {
+    event.preventDefault();
+    this.getEquations().then(response => {
+      console.log(response.data);
+      this.props.worksheetData(response.data);
+    });
+  };
 
-    handleEquations = (event) => {
-      event.preventDefault()
-      this.getEquations().then((response) => {
-        console.log(response.data);
-        this.props.worksheetData(response.data);
-      });
-    }
+  handleClick = () => {
+    this.setState({ displayAnswers: !this.state.displayAnswers });
+  };
 
-    handleClick = () => {
-      this.setState({ displayAnswers: !this.state.displayAnswers });
-    };
+  handleSaveWorksheet = async () => {
+    const { question } = this.props;
+    console.log('aaaaakuna', question);
+    await this.props.saveWorksheet(question, this.props.userName);
+    axios.post('worksheets', {
+      data: question
+    });
+  };
 
+  // handleWorksheetData = () => {
+  //     const { question } = this.state;
+  //     console.log('heeeeeeeeeeeeeeee', this.state.question)
+  //     this.props.worksheetData(question)
+  // }
 
-    handleSaveWorksheet = () => {
-      const { question } = this.state;
-      this.props.saveWorksheet(question)
-    }
+  // printDocument = () => {
+  //     window.html2canvas = html2canvas;
 
-    // handleWorksheetData = () => {
-    //     const { question } = this.state;
-    //     console.log('heeeeeeeeeeeeeeee', this.state.question)
-    //     this.props.worksheetData(question)
-    // }
+  //     let doc = new jsPDF();
+  //     let elWidth = document.querySelector('#divToPrint').offSetWidth;
+  //     doc.html(document.querySelector('#divToPrint'), {
+  //         html2canvas: {
+  //             width: elWidth
+  //         },
+  //         callback: function (doc) {
+  //             console.log(doc);
+  //             doc.save();
+  //         }
+  //     })
+  // }
 
-    // printDocument = () => {
-    //     window.html2canvas = html2canvas;
+  render() {
+    // const renderedEquations = this.state.question.map((e, i) => {
+    //     return <WorksheetData key={i} index={Number(i + 0)} equations={e.question} answer={e.answer} displayAnswers={this.state.displayAnswers} />
+    // })
 
-    //     let doc = new jsPDF();
-    //     let elWidth = document.querySelector('#divToPrint').offSetWidth;
-    //     doc.html(document.querySelector('#divToPrint'), {
-    //         html2canvas: {
-    //             width: elWidth
-    //         },
-    //         callback: function (doc) {
-    //             console.log(doc);
-    //             doc.save();
-    //         }
-    //     })
-    // }
-
-
-
-
-    render() {
-      // const renderedEquations = this.state.question.map((e, i) => {
-      //     return <WorksheetData key={i} index={Number(i + 0)} equations={e.question} answer={e.answer} displayAnswers={this.state.displayAnswers} />
-      // })
-
-      return (
-        <div>
-          <div className="savedQuestion-container">
-            <SavedQuickQuestions />
+    return (
+      <div>
+        <div className="savedQuestion-container">
+          <SavedQuickQuestions />
+        </div>
+        <h1>Create a Worksheet</h1>
+        <form className="workshett-form">
+          <div>
+            <TextField
+              id="filled-number"
+              label="Min Number"
+              name="min"
+              value={this.state.min}
+              onChange={this.handleChange}
+              type="number"
+              InputLabelProps={{
+                shrink: true
+              }}
+              margin="normal"
+              variant="filled"
+            />
+            <TextField
+              id="filled-number"
+              label="Max Number"
+              name="max"
+              value={this.state.max}
+              onChange={this.handleChange}
+              type="number"
+              InputLabelProps={{
+                shrink: true
+              }}
+              margin="normal"
+              variant="filled"
+            />
+            <TextField
+              id="filled-number"
+              label="Number of Equations"
+              name="numOfQuestions"
+              value={this.state.numOfQuestions}
+              onChange={this.handleChange}
+              type="number"
+              InputLabelProps={{
+                shrink: true
+              }}
+              margin="normal"
+              variant="filled"
+            />
           </div>
-          <h1>Create a Worksheet</h1>
-          <form className='workshett-form'>
-            <div>
-              <TextField
-                id="filled-number"
-                label="Min Number"
-                name='min'
-                value={this.state.min}
-                onChange={this.handleChange}
-                type="number"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                margin="normal"
-                variant="filled"
+          <div>
+            <Button
+              variant="contained"
+              onClick={this.handleEquations}
+              className="submit-btn"
+              type="submit"
+              value="Save"
+            >
+              Populate
+            </Button>
+          </div>
+        </form>
+        <h1>Worksheet section....</h1>
+        <Button
+          variant="contained"
+          onClick={this.handleClick}
+          className="submit-btn"
+          type="submit"
+        >
+          show answer
+        </Button>
+        <Button
+          variant="contained"
+          onClick={this.printDocument}
+          className="submit-btn"
+          type="submit"
+        >
+          download
+        </Button>
+        <Button
+          variant="contained"
+          onClick={this.handleSaveWorksheet}
+          className="submit-btn"
+          type="submit"
+        >
+          save
+        </Button>
+        <div id="divToPrint" className="Worksheet">
+          <div className="equation-container">
+            {this.props.question.map((e, i) => (
+              <WorksheetData
+                key={i}
+                index={Number(i + 0)}
+                equations={e.question}
+                answer={e.answer}
+                displayAnswers={this.state.displayAnswers}
               />
-              <TextField
-                id="filled-number"
-                label="Max Number"
-                name="max"
-                value={this.state.max}
-                onChange={this.handleChange}
-                type="number"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                margin="normal"
-                variant="filled"
-              />
-              <TextField
-                id="filled-number"
-                label="Number of Equations"
-                name="numOfQuestions"
-                value={this.state.numOfQuestions}
-                onChange={this.handleChange}
-                type="number"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                margin="normal"
-                variant="filled"
-              />
-            </div>
-            <div>
-              <Button
-                variant="contained"
-                onClick={this.handleEquations}
-                className="submit-btn"
-                type="submit"
-                value="Save"
-              >
-                Populate
-            </Button>
-            </div>
-          </form>
-          <h1>Worksheet section....</h1>
-          <Button
-            variant="contained"
-            onClick={this.handleClick}
-            className="submit-btn"
-            type="submit"
-          >
-            show answer
-            </Button>
-          <Button
-            variant="contained"
-            onClick={this.printDocument}
-            className="submit-btn"
-            type="submit"
-          >
-            download
-            </Button>
-          <Button
-            variant="contained"
-            onClick={this.handleSaveWorksheet}
-            className="submit-btn"
-            type="submit"
-          >
-            save
-            </Button>
-          <div id="divToPrint" className='Worksheet'>
-            <div className="equation-container">
-              {this.props.question.map((e, i) =>
-                <WorksheetData
-                  key={i}
-                  index={Number(i + 0)}
-                  equations={e.question}
-                  answer={e.answer}
-                  displayAnswers={this.state.displayAnswers}
-                />
-              )}
-            </div>
+            ))}
           </div>
         </div>
-      )
-    }
-  }
-
-const mapStateToProps = (state) => {
-  return {
-    question: state.worksheetData.data
+      </div>
+    );
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    question: state.worksheetData.data,
+    worksheet: state.worksheetSaver,
+    userName: state.savedUsername
+  };
+};
 
-export default connect(mapStateToProps, { worksheetData })(WorksheetForm);
+export default connect(
+  mapStateToProps,
+  { worksheetData, saveWorksheet }
+)(WorksheetForm);
 //  }
-
-
 
 //   getEquations = () => {
 //     axios
