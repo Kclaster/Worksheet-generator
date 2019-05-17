@@ -1,9 +1,12 @@
 import {
   ADD_QUESTION_TO_WORKSHEETDATA,
+  DELETE_QUESTION_TO_WORKSHEETDATA,
   SAVED_QUICKQUESTION,
   WORKSHEET_SAVER,
   WORKSHEET_DATA,
-  SAVE_USERNAME
+  SAVE_USERNAME,
+  SAVED_QUESTIONARR,
+  REMOVE_QUESTION
 } from './types';
 
 export const addQuestionToWorksheetdata = question => {
@@ -13,9 +16,30 @@ export const addQuestionToWorksheetdata = question => {
   };
 };
 
+export const deleteQuestionToWorksheetdata = question => {
+  return {
+    type: DELETE_QUESTION_TO_WORKSHEETDATA,
+    payload: question
+  };
+};
+
+export const deleteQuestionToSaved = question => {
+  return {
+    type: REMOVE_QUESTION,
+    payload: question
+  };
+};
+
 export const helperSaveQuickQuestion = question => {
   return {
     type: SAVED_QUICKQUESTION,
+    payload: question
+  };
+};
+
+export const helperSavePopulatedQuestionArr = question => {
+  return {
+    type: SAVED_QUESTIONARR,
     payload: question
   };
 };

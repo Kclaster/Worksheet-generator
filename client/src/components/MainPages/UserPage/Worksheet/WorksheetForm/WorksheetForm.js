@@ -7,7 +7,11 @@ import WorksheetData from './WorksheetData';
 // import jsPDF from "jspdf";
 // import html2canvas from 'html2canvas'
 import SavedQuickQuestions from '../../../../Features/QuickQuestion/SavedQuickQuestions';
-import { saveWorksheet, worksheetData } from '../../../../../redux/actions';
+import {
+  saveWorksheet,
+  worksheetData,
+  helperSavePopulatedQuestionArr
+} from '../../../../../redux/actions';
 import { connect } from 'react-redux';
 
 // import React from "react";
@@ -57,6 +61,7 @@ class WorksheetForm extends React.Component {
     this.getEquations().then(response => {
       console.log(response.data);
       this.props.worksheetData(response.data);
+      this.props.helperSavePopulatedQuestionArr(response.data);
     });
   };
 
@@ -213,7 +218,7 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { worksheetData, saveWorksheet }
+  { worksheetData, saveWorksheet, helperSavePopulatedQuestionArr }
 )(WorksheetForm);
 //  }
 
