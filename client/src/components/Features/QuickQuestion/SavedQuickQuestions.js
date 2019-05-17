@@ -11,12 +11,11 @@ import {
 
 const SavedQuickQuestion = props => {
   const handleClickAdd = question => {
-    console.log(question);
-    this.props.addQuestionToWorksheetdata(question);
+    props.addQuestionToWorksheetdata(question);
   };
 
   const handleClickDelete = question => {
-    this.props.deleteQuestionToWorksheetdata(question);
+    props.deleteQuestionToWorksheetdata(question);
   };
 
   const StyledUl = styled.ul({
@@ -64,7 +63,6 @@ const SavedQuickQuestion = props => {
 };
 
 const mapStateToProps = state => {
-  console.log(state.savedQuestion);
   return {
     question: state.savedQuestion.worksheetQuestion
   };

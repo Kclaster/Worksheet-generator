@@ -131,7 +131,6 @@ router.post('/', function(req, res) {
   connection.query(sql, [slope_intercept_questionsf(-50, 50)], function(err) {
     if (err) throw err;
   });
-  connection.end();
   res.send('posted');
 });
 
@@ -146,7 +145,6 @@ router.post('/positive', function(req, res) {
   });
   connection.query(sql, [slope_intercept_questionsb], function(err) {
     if (err) throw err;
-    connection.end();
   });
   res.send('posted');
 });
@@ -165,7 +163,6 @@ router.post('/negative', function(req, res) {
   });
   connection.query(sql, [slope_intercept_questionsf], function(err) {
     if (err) throw err;
-    connection.end();
   });
   res.send('posted');
 });
