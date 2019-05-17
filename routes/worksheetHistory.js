@@ -20,7 +20,6 @@ router.get('/', function(req, res) {
 });
 
 router.get('/history', function(req, res) {
-  console.log('america');
   connection.query(
     `SELECT * FROM \`worksheet_history\` WHERE owner_username = ?`,
     [req.query.userName],
@@ -36,9 +35,7 @@ router.get('/history', function(req, res) {
 });
 
 router.post('/', function(req, res) {
-  console.log('penis', req.body);
   const data = req.body.data;
-  console.log(data);
   const arr = req.body.data.map(cur => {
     return [
       cur.date,

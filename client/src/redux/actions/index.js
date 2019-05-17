@@ -45,7 +45,6 @@ export const helperSavePopulatedQuestionArr = question => {
 };
 
 export const saveWorksheet = (equations, username) => {
-  console.log('saveworksheet actions', equations);
   return {
     type: WORKSHEET_SAVER,
     payload: { equations, username }
@@ -53,7 +52,6 @@ export const saveWorksheet = (equations, username) => {
 };
 
 export const worksheetData = question => {
-  console.log('woksheetdata action', question);
   return {
     type: WORKSHEET_DATA,
     payload: question

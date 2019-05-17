@@ -18,7 +18,6 @@ router.get('/', async function(req, res) {
       }
     }
   };
-  console.log('akuna!!!');
 
   countFromEachTable = (numOfQuestions, absMax) => {
     return numOfQuestions / absMax;
@@ -60,37 +59,10 @@ router.get('/', async function(req, res) {
   );
 });
 
-// for (i = minAnswer; i <= maxAnswer; i++) {
-//   for (
-//     i = 0;
-//     i <= countFromEachTable(numOfQuestions, largestAnswer(max));
-//     i++
-//   ) {
-//     connection.query(
-//       `SELECT * FROM slope_intercept_both_${i} WHERE max <= ? AND min >= ?`,
-//       [max, min],
-// async function(error, results, fields) {
-//   if (error) {
-//     throw error;
-//   }
-//   //TODO:this is going to mess up the count for times when there arn't enough questions in the get to handle the count
-//   if (results) {
-//     let rando = Math.floor(Math.random() * results.length);
-//     questionArr.push(results[rando]);
-//     console.log('questionArr!!!!!!!!!!!!!!!!!!!', questionArr);
-//   }
-// }
-//       );
-//     }
-//   res.json(questionArr);
-// });
-
 router.get('/one', async function(req, res) {
-  console.log('pee', req.query.max, req.query.min);
   let query = req.query;
   let max = Number(query.max);
   let min = Number(query.min);
-  console.log('akunaaaaaaaa', max, min);
   connection.query(
     'SELECT * FROM slope_intercept_both WHERE max <= ? AND min >= ?',
     [max, min],

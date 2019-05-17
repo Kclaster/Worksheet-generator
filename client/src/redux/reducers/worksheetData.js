@@ -12,7 +12,6 @@ const initialState = {
 };
 
 export default function worksheetData(state = initialState, action) {
-  console.log('answer', action.payload);
   switch (action.type) {
     case WORKSHEET_DATA:
       return {
@@ -25,7 +24,6 @@ export default function worksheetData(state = initialState, action) {
         data: [...state.data, action.payload]
       };
     case DELETE_QUESTION_TO_WORKSHEETDATA:
-      console.log('is this working');
       return {
         ...state,
         data: state.data.filter(element => element.id !== action.payload.id)
