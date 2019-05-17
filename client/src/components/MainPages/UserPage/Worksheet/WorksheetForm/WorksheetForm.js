@@ -59,7 +59,6 @@ class WorksheetForm extends React.Component {
 
   handleSaveWorksheet = async () => {
     const { question } = this.props;
-    console.log('aaaaakuna', question);
     await this.props.saveWorksheet(question, this.props.userName);
     axios.post('worksheets', {
       data: question

@@ -64,7 +64,6 @@ class UserPref extends React.Component {
           {this.state.history &&
             this.state.history.length &&
             this.state.history.map((cur, index) => {
-              console.log('america', cur);
               return (
                 <ListItem
                   key={cur.id}

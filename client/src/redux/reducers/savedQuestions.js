@@ -10,7 +10,6 @@ const initialState = {
 };
 
 export default function savedQuickQuestion(state = initialState, action) {
-  console.log('answer', action.payload);
   switch (action.type) {
     case SAVED_QUICKQUESTION:
       return {
