@@ -5,7 +5,7 @@ import {
 } from '../actions/types';
 
 const initialState = {
-  quickQuestion: [],
+  quickQuestions: [],
   worksheetQuestion: []
 };
 
@@ -13,7 +13,7 @@ export default function savedQuickQuestion(state = initialState, action) {
   switch (action.type) {
     case SAVED_QUICKQUESTION:
       return {
-        quickQuestions: [...state.quickQuestion, action.payload],
+        quickQuestions: [...state.quickQuestions, action.payload],
         worksheetQuestion: [...state.worksheetQuestion, action.payload]
       };
     case SAVED_QUESTIONARR:
