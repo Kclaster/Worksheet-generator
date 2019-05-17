@@ -4,6 +4,9 @@ import UserPage from '.././../../MainPages/UserPage';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { saveUsername } from '../../../../redux/actions';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
 
 class Login extends Component {
   constructor() {
@@ -33,6 +36,8 @@ class Login extends Component {
       if (res) {
         this.props.saveUsername(user.email);
         this.props.history.push(<UserPage />);
+        //if a user Login success and return to Home page ('/').
+        this.props.history.push('/');
       }
     });
   }
@@ -43,10 +48,16 @@ class Login extends Component {
         <div className="row">
           <div className="col-md-6 mt-5 mx-auto">
             <form noValidate onSubmit={this.onSubmit}>
-              <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
+              <Typography
+                variant="h4"
+                component="h4"
+                className="h3 mb-3 font-weight-normal"
+              >
+                Please sign in
+              </Typography>
               <div className="form-group">
-                <label htmlFor="email">Email Address</label>
-                <input
+                {/* <label htmlFor="email">Email Address</label> */}
+                <TextField
                   type="email"
                   className="form-control"
                   name="email"
@@ -56,8 +67,8 @@ class Login extends Component {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="password">Password</label>
-                <input
+                {/* <label htmlFor="password">Password</label> */}
+                <TextField
                   type="password"
                   className="form-control"
                   name="password"
@@ -66,12 +77,14 @@ class Login extends Component {
                   onChange={this.onChange}
                 />
               </div>
-              <button
+              <Button
                 type="submit"
+                variant="contained"
+                color="Secondary"
                 className="btn btn-lg btn-primary btn-block"
               >
                 Sign in
-              </button>
+              </Button>
             </form>
           </div>
         </div>

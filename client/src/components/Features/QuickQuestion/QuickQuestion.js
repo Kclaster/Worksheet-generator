@@ -33,17 +33,38 @@ class QuickQuestion extends React.Component {
   handleSavedQuickQuestion = () => {
     this.props.helperSaveQuickQuestion(this.state.question);
   };
+
   render() {
     return (
       <div>
-        <h1>Quick Question</h1>
-        <div className="quickQuestions-container">
-          Equation:
+        <Typography variant="h4" component="h4">
+          Quick Question
+        </Typography>
+        <Paper className="quickQuestions-container">
+          <Typography variant="p" component="p">
+            Equation:
+          </Typography>
           {this.state.question && <h1>{this.state.question.question}</h1>}
-          Answer:{this.state.question && <h1>{this.state.question.answer}</h1>}
-        </div>
-        <button onClick={this.handleNewQuestion}>Update Equation</button>
-        <button onClick={this.handleSavedQuickQuestion}>Save Equation</button>
+          <Typography variant="p" component="p">
+            Answer:
+          </Typography>
+          {this.state.question && <h1>{this.state.question.answer}</h1>}
+        </Paper>
+        <br />
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={this.handleNewQuestion}
+        >
+          Update Equation
+        </Button>
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={this.handleSavedQuickQuestion}
+        >
+          Save Equation
+        </Button>
       </div>
     );
   }

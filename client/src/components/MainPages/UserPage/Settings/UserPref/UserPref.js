@@ -1,7 +1,6 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import './UserPref.css';
-// import Button from "../../../../../components/Buttons.js";
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -22,7 +21,6 @@ class UserPref extends React.Component {
   }
 
   handleClick = e => {
-    console.log('this should be a prior worksheet', e);
     this.setState({
       chosenHistory: e
     });
@@ -31,9 +29,7 @@ class UserPref extends React.Component {
   componentDidMount() {
     Axios.get(`/worksheets/history?userName=${this.props.username}`).then(
       res => {
-        console.log(res);
         let timesArr = Array.from(new Set(res.data.map(cur => cur.date_saved)));
-        console.log('timesArr', timesArr);
         let completeArray = timesArr.map(cur => {
           let familyArr = [];
           for (var question of res.data) {
@@ -43,7 +39,6 @@ class UserPref extends React.Component {
           }
           return familyArr;
         });
-        console.log('completeArr', completeArray);
         this.setState({
           history: completeArray
         });
@@ -56,12 +51,9 @@ class UserPref extends React.Component {
     this.setState({
       [name]: target
     });
-    console.log(name);
   };
 
   render() {
-    console.log(this.state);
-    // const { classes } = this.props;
     const { dense, secondary } = this.state;
 
     return (

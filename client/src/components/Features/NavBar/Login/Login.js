@@ -1,10 +1,12 @@
+// Maintaining code as a backup renamed component as GoogleLogin 
+
 import React from "react";
 import HomePage from "../../../MainPages/HomePage/HomePage.js";
 import UserPage from "../../../MainPages/UserPage";
 import { GoogleLogin } from "react-google-login-component";
 import Button from "@material-ui/core/Button";
 
-class Login extends React.Component {
+class GoogleLogin extends React.Component {
   
   constructor(props, context) {
     super(props, context);
@@ -41,4 +43,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default GoogleLogin;
