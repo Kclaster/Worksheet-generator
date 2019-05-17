@@ -63,7 +63,6 @@ router.post('/', function(req, res) {
   });
   connection.query(sql, [standard_form_questionsc], function(err) {
     if (err) throw err;
-    connection.end();
   });
   res.send('posted');
 });

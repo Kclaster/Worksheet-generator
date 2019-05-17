@@ -1,19 +1,19 @@
-// Different from other login.js
-
-import React, { Component } from "react";
-import { login } from "../UserFunctions/UserFunctions";
-import UserPage from "../../../MainPages/UserPage";
-import { withRouter } from "react-router-dom";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
-import TextField from "@material-ui/core/TextField";
+import React, { Component } from 'react';
+import { login } from '../UserFunctions/UserFunctions';
+import UserPage from '.././../../MainPages/UserPage';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { saveUsername } from '../../../../redux/actions';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
 
 class Login extends Component {
   constructor() {
     super();
     this.state = {
-      email: "",
-      password: ""
+      email: '',
+      password: ''
     };
 
     this.onChange = this.onChange.bind(this);
@@ -34,9 +34,10 @@ class Login extends Component {
 
     login(user).then(res => {
       if (res) {
+        this.props.saveUsername(user.email);
         this.props.history.push(<UserPage />);
         //if a user Login success and return to Home page ('/').
-        this.props.history.push("/");
+        this.props.history.push('/');
       }
     });
   }
@@ -84,7 +85,6 @@ class Login extends Component {
               >
                 Sign in
               </Button>
-       
             </form>
           </div>
         </div>
@@ -93,4 +93,9 @@ class Login extends Component {
   }
 }
 
-export default withRouter(Login);
+export default withRouter(
+  connect(
+    null,
+    { saveUsername }
+  )(Login)
+);

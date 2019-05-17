@@ -94,7 +94,7 @@ router.get('/one', async function(req, res) {
   connection.query(
     'SELECT * FROM slope_intercept_both WHERE max <= ? AND min >= ?',
     [max, min],
-    async function(error, results, fields) {
+    function(error, results, fields) {
       if (error) {
         throw error;
       }
@@ -109,6 +109,7 @@ router.get('/one', async function(req, res) {
 // Generate the equations to fill the database
 router.post('/', function(req, res) {
   let sql = `INSERT INTO \`slope_intercept_both\`(question, max, min, answer_num, answer) VALUES ?`;
+  console.log([slope_intercept_questions(-50, 50)]);
   connection.query(sql, [slope_intercept_questions(-50, 50)], function(err) {
     if (err) throw err;
   });
@@ -130,7 +131,6 @@ router.post('/', function(req, res) {
   connection.query(sql, [slope_intercept_questionsf(-50, 50)], function(err) {
     if (err) throw err;
   });
-  connection.end();
   res.send('posted');
 });
 
@@ -145,7 +145,6 @@ router.post('/positive', function(req, res) {
   });
   connection.query(sql, [slope_intercept_questionsb], function(err) {
     if (err) throw err;
-    connection.end();
   });
   res.send('posted');
 });
@@ -164,7 +163,6 @@ router.post('/negative', function(req, res) {
   });
   connection.query(sql, [slope_intercept_questionsf], function(err) {
     if (err) throw err;
-    connection.end();
   });
   res.send('posted');
 });

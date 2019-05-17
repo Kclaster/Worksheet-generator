@@ -20,5 +20,16 @@ USE `slope_intercept`;
                 `created` DATE NULL,
                 PRIMARY KEY (`id`));
       
+      CREATE TABLE `worksheet_history`(
+                `id` bigint(60) NOT NULL AUTO_INCREMENT,
+                `owner_username` varchar(60) NOT NULL,
+                `date_saved` varchar(60),
+                `question` varchar(50) NOT NULL,
+                `max` integer(10) NOT NULL,
+                `min` integer(10) NOT NUll,
+                `answer_num` integer(40) NOT NULL,
+                `answer` varchar(40) NOT NULL,
+                 PRIMARY KEY (`id`));
 
     Select * FROM slope_intercept_both;
+    

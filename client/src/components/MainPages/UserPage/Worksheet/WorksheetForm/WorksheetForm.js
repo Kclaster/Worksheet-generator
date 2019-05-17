@@ -1,23 +1,27 @@
-import React from "react";
-import "./WorksheetForm.css";
-// import MultipleSelect from './MultipleSelect'
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import axios from "axios";
-import WorksheetData from "./WorksheetData";
-import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
-import SavedQuickQuestions from "../../../../Features/QuickQuestion/SavedQuickQuestions";
-import { worksheetData } from "../../../../../redux/actions";
-import { connect } from "react-redux";
+import React from 'react';
+import './WorksheetForm.css';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import axios from 'axios';
+import WorksheetData from './WorksheetData';
+// import jsPDF from "jspdf";
+// import html2canvas from 'html2canvas'
+import SavedQuickQuestions from '../../../../Features/QuickQuestion/SavedQuickQuestions';
+import {
+  saveWorksheet,
+  worksheetData,
+  helperSavePopulatedQuestionArr
+} from '../../../../../redux/actions';
+import { connect } from 'react-redux';
+import Typography from '@material-ui/core/Typography';
 
 class WorksheetForm extends React.Component {
   constructor() {
     super();
     this.state = {
-      max: 0,
+      max: 30,
       min: 0,
-      numOfQuestions: 0,
+      numOfQuestions: 10,
       question: [],
       displayAnswers: false
     };
@@ -45,6 +49,7 @@ class WorksheetForm extends React.Component {
     this.getEquations().then(response => {
       console.log(response.data);
       this.props.worksheetData(response.data);
+      this.props.helperSavePopulatedQuestionArr(response.data);
     });
   };
 
@@ -52,9 +57,13 @@ class WorksheetForm extends React.Component {
     this.setState({ displayAnswers: !this.state.displayAnswers });
   };
 
-  handleSaveWorksheet = () => {
-    const { question } = this.state;
-    this.props.saveWorksheet(question);
+  handleSaveWorksheet = async () => {
+    const { question } = this.props;
+    console.log('aaaaakuna', question);
+    await this.props.saveWorksheet(question, this.props.userName);
+    axios.post('worksheets', {
+      data: question
+    });
   };
 
   render() {
@@ -142,24 +151,29 @@ class WorksheetForm extends React.Component {
           className="submit-btn"
           type="submit"
         >
-          Download
+          download
         </Button>
-
-        <Grid item xs={12}>
-          <div id="divToPrint" className="Worksheet">
-            <div className="equation-container">
-              {this.props.question.map((e, i) => (
-                <WorksheetData
-                  key={i}
-                  index={Number(i + 0)}
-                  equations={e.question}
-                  answer={e.answer}
-                  displayAnswers={this.state.displayAnswers}
-                />
-              ))}
-            </div>
+        <Button
+          variant="contained"
+          onClick={this.handleSaveWorksheet}
+          className="submit-btn"
+          type="submit"
+        >
+          save
+        </Button>
+        <div id="divToPrint" className="Worksheet">
+          <div className="equation-container">
+            {this.props.question.map((e, i) => (
+              <WorksheetData
+                key={i}
+                index={Number(i + 0)}
+                equations={e.question}
+                answer={e.answer}
+                displayAnswers={this.state.displayAnswers}
+              />
+            ))}
           </div>
-        </Grid>
+        </div>
       </div>
     );
   }
@@ -167,11 +181,13 @@ class WorksheetForm extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    question: state.worksheetData.data
+    question: state.worksheetData.data,
+    worksheet: state.worksheetSaver,
+    userName: state.savedUsername
   };
 };
 
 export default connect(
   mapStateToProps,
-  { worksheetData }
+  { worksheetData, saveWorksheet, helperSavePopulatedQuestionArr }
 )(WorksheetForm);

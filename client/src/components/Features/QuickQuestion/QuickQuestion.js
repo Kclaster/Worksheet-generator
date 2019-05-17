@@ -1,11 +1,12 @@
-
-import Button from "@material-ui/core/Button";
-import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
+import Button from '@material-ui/core/Button';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
+// External Dependencies
 import React from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import {helperSaveQuickQuestion} from '../../../redux/actions'
+import { helperSaveQuickQuestion } from '../../../redux/actions';
 
 class QuickQuestion extends React.Component {
   constructor() {
@@ -21,21 +22,19 @@ class QuickQuestion extends React.Component {
     });
   };
 
-    componentDidMount() {
-        this.getOneQuestion();
-    }
+  componentDidMount() {
+    this.getOneQuestion();
+  }
 
-    handleNewQuestion=()=>{
-        this.getOneQuestion();
-}
+  handleNewQuestion = () => {
+    this.getOneQuestion();
+  };
 
-handleSavedQuickQuestion = () =>{
-  const { question, answer } = this.state.question;
-  this.props.helperSaveQuickQuestion({question, answer})
-}
+  handleSavedQuickQuestion = () => {
+    this.props.helperSaveQuickQuestion(this.state.question);
+  };
 
   render() {
-    console.log(this.state.question);
     return (
       <div>
         <Typography variant="h4" component="h4">
@@ -51,7 +50,7 @@ handleSavedQuickQuestion = () =>{
           </Typography>
           {this.state.question && <h1>{this.state.question.answer}</h1>}
         </Paper>
-        <br></br>
+        <br />
         <Button
           variant="contained"
           color="secondary"
@@ -62,21 +61,22 @@ handleSavedQuickQuestion = () =>{
         <Button
           variant="contained"
           color="secondary"
-          onClick={this.handleClickSaveButton}
+          onClick={this.handleSavedQuickQuestion}
         >
           Save Equation
         </Button>
       </div>
     );
-
-    
-}
+  }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        question: state.question
-    }
-}
+const mapStateToProps = state => {
+  return {
+    question: state.question
+  };
+};
 
-export default connect(mapStateToProps, {helperSaveQuickQuestion})(QuickQuestion);
+export default connect(
+  mapStateToProps,
+  { helperSaveQuickQuestion }
+)(QuickQuestion);
