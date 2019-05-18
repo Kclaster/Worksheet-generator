@@ -37,7 +37,7 @@ class Login extends Component {
         this.props.saveUsername(user.email);
         this.props.history.push(<UserPage />);
         //if a user Login success and return to Home page ('/').
-        this.props.history.push('/');
+        this.props.history.push('/Profile');
       }
     });
   }
