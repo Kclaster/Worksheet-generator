@@ -6,7 +6,7 @@ var style = {
     backgroundColor: "#3f50b5",
     borderTop: "1px solid #E7E7E7",
     textAlign: "center",
-    padding: "20px",
+    padding: "15px",
     position: "fixed",
     left: "0",
     bottom: "0",
