@@ -1,15 +1,28 @@
 import React from "react";
-import "./Footer.css";
-import Typography from "@material-ui/core/Typography";
+// import "./Footer.css";
+// import Typography from "@material-ui/core/Typography";
 
-class Footer extends React.Component {
-  render() {
-    return (
-      <Typography variant="p" component="p">
-        <div className="Footer">Worksheet Generator - 2019</div>
-      </Typography>
-    );
-  }
+var style = {
+    backgroundColor: "#3f50b5",
+    borderTop: "1px solid #E7E7E7",
+    textAlign: "center",
+    padding: "20px",
+    position: "fixed",
+    left: "0",
+    bottom: "0",
+    height: "10px",
+    width: "100%",
+    color:"white"
 }
 
-export default Footer;
+
+function Footer() {
+    return (
+        <div>
+            <div style={style}>Worksheet Generator - 2019  
+            </div>
+        </div>
+    )
+}
+
+export default Footer
