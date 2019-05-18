@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import axios from "axios";
 import { helperSaveQuickQuestion } from "../../../redux/actions";
 
+
 class QuickQuestion extends React.Component {
   constructor() {
     super();
@@ -41,6 +42,7 @@ class QuickQuestion extends React.Component {
         <Typography variant="h4" component="h4">
           Quick Question
         </Typography>
+        <br />
         <Paper className="quickQuestions-container">
           <Typography variant="p" component="p">
             Equation:

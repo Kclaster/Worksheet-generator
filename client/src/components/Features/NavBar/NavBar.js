@@ -4,20 +4,21 @@ import HomePage from "../../MainPages/HomePage/HomePage";
 import Button from "@material-ui/core/Button";
 import styled from "styled-components";
 import "../NavBar/NavBar.css";
-import { createMuiTheme } from '@material-ui/core/styles';
 
-
-const theme = createMuiTheme();
-console.log(theme);
 
 const Wrapper = styled.ul`
   display: flex;
   margin-left: -40px;
 `;
 
-const StyledLink = styled('nav-link')`
+const StyledLink = styled(Link)`
   height: 40px;
   font-weight: bold;
+  font-color:white;
+  a {
+    color: white;
+    font-weight: bold;
+}
 `;
 
 class NavBarLogin extends Component {

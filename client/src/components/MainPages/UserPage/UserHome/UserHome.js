@@ -1,5 +1,4 @@
 import React from "react";
-import "./UserHome.css";
 import QuickQuestion from "../../../Features/QuickQuestion/QuickQuestion";
 import { connect } from "react-redux";
 import ProfileInfo from "../../../Features/NavBar/ProfileInfo";

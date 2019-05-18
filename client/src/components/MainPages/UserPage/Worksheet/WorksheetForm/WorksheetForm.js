@@ -11,7 +11,8 @@ import { worksheetData } from "../../../../../redux/actions";
 import { connect } from "react-redux";
 import styled from "styled-components";
 
-const Wrapper = styled.div`
+const Wrapper = styled(Grid)`
+  display: flex;
 `;
 
 class WorksheetForm extends React.Component {
@@ -63,6 +64,14 @@ class WorksheetForm extends React.Component {
   render() {
     return (
       <div>
+        <Wrapper>
+        <Grid>
+          <div className="savedQuestion-container">
+            <SavedQuickQuestions />
+          </div>
+        </Grid>
+        </Wrapper>
+
         <Typography variant="h4" component="h4">
           Create a Worksheet
         </Typography>
@@ -121,15 +130,12 @@ class WorksheetForm extends React.Component {
             </Button>
           </div>
         </form>
-        <Grid>
-            <div className="savedQuestion-container">
-              <SavedQuickQuestions />
-            </div>
-        </Grid>
+
         <br />
         <Typography variant="h4" component="h4">
           WorkSheet Section
         </Typography>
+        <br />
         <Button
           variant="contained"
           color="secondary"
@@ -149,24 +155,21 @@ class WorksheetForm extends React.Component {
           Download
         </Button>
         <div>
-        <Wrapper>
-          <Grid>
-            <div id="divToPrint" className="Worksheet">
-              <div className="equation-container">
-                {this.props.question.map((e, i) => (
-                  <WorksheetData
-                    key={i}
-                    index={Number(i + 0)}
-                    equations={e.question}
-                    answer={e.answer}
-                    displayAnswers={this.state.displayAnswers}
-                  />
-                ))}
+            <Grid>
+              <div id="divToPrint" className="Worksheet">
+                <div className="equation-container">
+                  {this.props.question.map((e, i) => (
+                    <WorksheetData
+                      key={i}
+                      index={Number(i + 0)}
+                      equations={e.question}
+                      answer={e.answer}
+                      displayAnswers={this.state.displayAnswers}
+                    />
+                  ))}
+                </div>
               </div>
-            </div>
-          </Grid>
-
-        </Wrapper>
+            </Grid>
         </div>
       </div>
     );
