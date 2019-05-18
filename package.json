@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "serve": "node --max_old_space_size=4096 node_modules/.bin/vue-cli-service serve --open",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "dependencies": {
