@@ -48,7 +48,7 @@ class UserPage extends React.Component {
                 <div className={classes.root}>
                     <AppBar position="static">
                         <Tabs value={value} onChange={this.handleChange}>
-                            <Tab label="Home" />
+                            <Tab label="Quick Question" />
                             <Tab label="Create a Worksheet" />
                             <Tab label="History" />
                         </Tabs>
