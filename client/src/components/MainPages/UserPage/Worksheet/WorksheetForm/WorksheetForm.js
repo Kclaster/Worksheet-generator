@@ -1,19 +1,16 @@
-import React from 'react';
-import './WorksheetForm.css';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import axios from 'axios';
-import WorksheetData from './WorksheetData';
-// import jsPDF from "jspdf";
-// import html2canvas from 'html2canvas'
-import SavedQuickQuestions from '../../../../Features/QuickQuestion/SavedQuickQuestions';
+import React from "react";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import axios from "axios";
+import WorksheetData from "./WorksheetData";
+import SavedQuickQuestions from "../../../../Features/QuickQuestion/SavedQuickQuestions";
 import {
   saveWorksheet,
   worksheetData,
   helperSavePopulatedQuestionArr
-} from '../../../../../redux/actions';
-import { connect } from 'react-redux';
-import Typography from '@material-ui/core/Typography';
+} from "../../../../../redux/actions";
+import { connect } from "react-redux";
+import Typography from "@material-ui/core/Typography";
 
 class WorksheetForm extends React.Component {
   constructor() {
@@ -60,7 +57,7 @@ class WorksheetForm extends React.Component {
   handleSaveWorksheet = async () => {
     const { question } = this.props;
     await this.props.saveWorksheet(question, this.props.userName);
-    axios.post('worksheets', {
+    axios.post("worksheets", {
       data: question
     });
   };
@@ -134,6 +131,7 @@ class WorksheetForm extends React.Component {
         <Typography variant="h4" component="h4">
           WorkSheet Section
         </Typography>
+        <br />
         <Button
           variant="contained"
           color="secondary"
@@ -155,6 +153,7 @@ class WorksheetForm extends React.Component {
         <Button
           variant="contained"
           onClick={this.handleSaveWorksheet}
+          color="secondary"
           className="submit-btn"
           type="submit"
         >
