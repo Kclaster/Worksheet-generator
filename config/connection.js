@@ -3,6 +3,7 @@ var connection;
 var password = require('./config');
 
 if (process.env.JAWSDB_URL) {
+  console.log('jawsdb is running!!!');
   connection = mysql.createConnection(process.env.JAWSDB_URL);
 } else {
   var connection = mysql.createConnection({
