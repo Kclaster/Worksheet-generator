@@ -14,9 +14,13 @@ const StyledLink = styled(Link)`
   height: 40px;
   font-weight: bold;
   font-color: white;
+  text-decoration: none;
+
   a {
     color: white;
     font-weight: bold;
+    text-decoration: none;
+
   }
 `;
 
