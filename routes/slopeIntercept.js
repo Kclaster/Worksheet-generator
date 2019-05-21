@@ -82,25 +82,37 @@ router.get('/one', async function(req, res) {
 router.post('/', function(req, res) {
   let sql = `INSERT INTO \`slope_intercept_both\`(question, max, min, answer_num, answer) VALUES ?`;
   console.log([slope_intercept_questions(-50, 50)]);
-  connection.query(sql, [slope_intercept_questions(-50, 50)], function(err) {
+  connection.query(sql, [slope_intercept_questions(-50, 50, 0)], function(err) {
     if (err) throw err;
   });
-  connection.query(sql, [slope_intercept_questionsa(-50, 50)], function(err) {
+  connection.query(sql, [slope_intercept_questionsa(-50, 50, 0)], function(
+    err
+  ) {
     if (err) throw err;
   });
-  connection.query(sql, [slope_intercept_questionsb(-50, 50)], function(err) {
+  connection.query(sql, [slope_intercept_questionsb(-50, 50, 0)], function(
+    err
+  ) {
     if (err) throw err;
   });
-  connection.query(sql, [slope_intercept_questionsc(-50, 50)], function(err) {
+  connection.query(sql, [slope_intercept_questionsc(-50, 50, 0)], function(
+    err
+  ) {
     if (err) throw err;
   });
-  connection.query(sql, [slope_intercept_questionsd(-50, 50)], function(err) {
+  connection.query(sql, [slope_intercept_questionsd(-50, 50, 0)], function(
+    err
+  ) {
     if (err) throw err;
   });
-  connection.query(sql, [slope_intercept_questionse(-50, 50)], function(err) {
+  connection.query(sql, [slope_intercept_questionse(-50, 50, 0)], function(
+    err
+  ) {
     if (err) throw err;
   });
-  connection.query(sql, [slope_intercept_questionsf(-50, 50)], function(err) {
+  connection.query(sql, [slope_intercept_questionsf(-50, 50, 0)], function(
+    err
+  ) {
     if (err) throw err;
   });
   res.send('posted');
