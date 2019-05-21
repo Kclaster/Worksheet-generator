@@ -1,5 +1,5 @@
 //Done
-const slopeIntercept = (min_size, max_size) => {
+const slopeIntercept = (min_size, max_size, answer) => {
   equation = [];
   m = min_size;
   b = min_size;
@@ -16,7 +16,7 @@ const slopeIntercept = (min_size, max_size) => {
           y >= min_size &&
           m !== 0 &&
           x === answer &&
-          count < 10
+          count < 3
         ) {
           let max = Math.max(y, m, b, x, y);
           let min = Math.min(y, m, b, x, y);
@@ -43,8 +43,8 @@ const slopeIntercept = (min_size, max_size) => {
               'x = ' + x
             ]);
           }
+          count++;
         }
-        count++;
         b++;
       }
       b = min_size;
