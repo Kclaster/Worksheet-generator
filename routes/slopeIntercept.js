@@ -30,8 +30,7 @@ router.get('/', async function(req, res) {
   let minAnswer = Number(`-${maxAnswer}`);
   let questionArr = [];
   connection.query(
-    `SELECT * FROM slope_intercept_both WHERE max <= ? AND min >= ? AND answer_num <= ? AND answer_num >= ? ORDER BY RAND()`,
-    [max, min, maxAnswer, minAnswer, numOfQuestions],
+    `SELECT * FROM slope_intercept_both ORDER BY RAND()`,
     async function(error, results, fields) {
       if (error) {
         throw error;
@@ -59,24 +58,44 @@ router.get('/', async function(req, res) {
   );
 });
 
+// for demo only
 router.get('/one', async function(req, res) {
   let query = req.query;
   let max = Number(query.max);
   let min = Number(query.min);
-  connection.query(
-    'SELECT * FROM slope_intercept_both WHERE max <= ? AND min >= ?',
-    [max, min],
-    function(error, results, fields) {
-      if (error) {
-        throw error;
-      }
-      if (results) {
-        let rando = Math.floor(Math.random() * results.length);
-        res.json(results[rando]);
-      }
+  connection.query('SELECT * FROM slope_intercept_both', [max, min], function(
+    error,
+    results,
+    fields
+  ) {
+    if (error) {
+      throw error;
     }
-  );
+    if (results) {
+      let rando = Math.floor(Math.random() * results.length);
+      res.json(results[rando]);
+    }
+  });
 });
+
+// router.get('/one', async function(req, res) {
+//   let query = req.query;
+//   let max = Number(query.max);
+//   let min = Number(query.min);
+//   connection.query(
+//     'SELECT * FROM slope_intercept_both WHERE max <= ? AND min >= ?',
+//     [max, min],
+//     function(error, results, fields) {
+//       if (error) {
+//         throw error;
+//       }
+//       if (results) {
+//         let rando = Math.floor(Math.random() * results.length);
+//         res.json(results[rando]);
+//       }
+//     }
+//   );
+// });
 
 // Generate the equations to fill the database
 router.post('/', function(req, res) {
