@@ -40,5 +40,4 @@ const slopeIntercept = (min_size, max_size, answer) => {
   return equation;
 };
 
-console.log(slopeIntercept(-50, 50, 0));
 module.exports = slopeIntercept;
