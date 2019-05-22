@@ -1,6 +1,7 @@
 import React from 'react';
 import './WorksheetForm';
 import './WorksheetData.css'
+import html2canvas from 'html2canvas';
 
 
 

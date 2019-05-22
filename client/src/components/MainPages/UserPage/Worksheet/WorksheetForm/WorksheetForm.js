@@ -4,8 +4,8 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
 import WorksheetData from './WorksheetData';
-// import jsPDF from "jspdf";
-// import html2canvas from 'html2canvas'
+import jsPDF from "jspdf";
+import html2canvas from 'html2canvas'
 import SavedQuickQuestions from '../../../../Features/QuickQuestion/SavedQuickQuestions';
 import {
   saveWorksheet,
@@ -39,7 +39,7 @@ class WorksheetForm extends React.Component {
   getEquations = () => {
     return axios.get(
       `/slope_intercept?min=${this.state.min}&max=${
-        this.state.max
+      this.state.max
       }&numOfQuestions=${this.state.numOfQuestions}`
     );
   };
@@ -64,6 +64,26 @@ class WorksheetForm extends React.Component {
       data: question
     });
   };
+
+  printDocument = () => {
+
+    window.html2canvas = html2canvas;
+    let equationWidth = document.querySelector('#equation-data')
+
+    let doc = new jsPDF();
+    let elWidth = document.querySelector('#divToPrint').offSetWidth;
+    doc.html(document.querySelector('#divToPrint'), {
+      html2canvas: {
+        scale: .28,
+
+
+      },
+      callback: function (doc) {
+        console.log(doc);
+        doc.save();
+      }
+    })
+  }
 
   render() {
     return (
@@ -160,7 +180,7 @@ class WorksheetForm extends React.Component {
         >
           save
         </Button>
-        <div id="divToPrint" className="Worksheet">
+        <div id="divToPrint" className="Worksheet" >
           <div className="equation-container">
             {this.props.question.map((e, i) => (
               <WorksheetData
