@@ -1,4 +1,4 @@
-var password = 'Elijah@2018'; // require('./config');
+var password = 'password'; // require('./config');
 var mysql = require('mysql');
 
 let connection_string = '';
