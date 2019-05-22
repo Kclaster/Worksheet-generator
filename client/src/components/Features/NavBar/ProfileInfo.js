@@ -1,8 +1,13 @@
 import React, { Component } from "react";
 import jwt_decode from "jwt-decode";
-import UserPage from "../../MainPages/UserPage";
+import Typography from "@material-ui/core/Typography";
+import styled from "styled-components";
 
-class Profile extends Component {
+const Wrapper = styled.tbody`
+  margin-left: 10px;
+`;
+
+class ProfileInfo extends Component {
   constructor() {
     super();
     this.state = {
@@ -24,32 +29,35 @@ class Profile extends Component {
 
   render() {
     return (
-      <div className="container">
-        {/* <div className="jumbotron mt-5"> */}
-          {/* <div className="col-sm-8 mx-auto">
-            <h1 className="text-center">PROFILE</h1>
-          </div> */}
-          {/* <table className="table col-md-6 mx-auto"> */}
-            {/* <tbody>
+      <div>
+        <Wrapper>
+          <Typography variant="h4" component="h4">
+            Profile
+          </Typography>
+          <br />
+          <tbody>
+            <Typography variant="p" component="p">
               <tr>
-                <td>First Name</td>
+                <td>First Name:</td>
+                <br />
                 <td>{this.state.first_name}</td>
               </tr>
               <tr>
-                <td>Last Name</td>
+                <td>Last Name:</td>
+                <br />
                 <td>{this.state.last_name}</td>
               </tr>
               <tr>
-                <td>Email</td>
+                <td>Email:</td>
+                <br />
                 <td>{this.state.email}</td>
               </tr>
-            </tbody> */}
-            <UserPage />
-          {/* </table>
-        </div> */}
+            </Typography>
+          </tbody>
+        </Wrapper>
       </div>
     );
   }
 }
 
-export default Profile;
+export default ProfileInfo;

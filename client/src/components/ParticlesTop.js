@@ -1,17 +1,17 @@
 import Particles from "react-particles-js";
 import React from "react";
 
-class ParticlesCustom extends React.Component {
+class ParticlesTop extends React.Component {
   render() {
     return (
       <Particles
         params={{
           particles: {
             number: {
-              value: 80,
+              value: 100,
               density: {
                 enable: true,
-                value_area: 600
+                value_area: 500
               }
             },
             color: {
@@ -28,12 +28,12 @@ class ParticlesCustom extends React.Component {
               },
               image: {
                 src: "img/github.svg",
-                width: 150,
-                height: 150
+                width: 100,
+                // height: "10%"
               }
             },
             opacity: {
-              value: .1,
+              value: 0.5,
               random: false,
               anim: {
                 enable: false,
@@ -119,4 +119,4 @@ class ParticlesCustom extends React.Component {
     );
   }
 }
-export default ParticlesCustom;
+export default ParticlesTop;

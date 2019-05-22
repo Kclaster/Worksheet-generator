@@ -1,12 +1,16 @@
-import Button from '@material-ui/core/Button';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
+import Button from "@material-ui/core/Button";
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
 // External Dependencies
-import React from 'react';
-import { connect } from 'react-redux';
-import axios from 'axios';
-import { helperSaveQuickQuestion } from '../../../redux/actions';
+import React from "react";
+import { connect } from "react-redux";
+import axios from "axios";
+import { helperSaveQuickQuestion } from "../../../redux/actions";
+import styled from "styled-components";
+
+const Wrapper = styled.ul`
+  padding: 10px;
+`;
 
 class QuickQuestion extends React.Component {
   constructor() {
@@ -31,25 +35,32 @@ class QuickQuestion extends React.Component {
   };
 
   handleSavedQuickQuestion = () => {
-    this.props.helperSaveQuickQuestion(this.state.question);
+    const { question, answer } = this.state.question;
+    this.props.helperSaveQuickQuestion({ question, answer });
   };
 
   render() {
+    console.log(this.state.question);
     return (
       <div>
         <Typography variant="h4" component="h4">
           Quick Question
         </Typography>
+        <br />
+
         <Paper className="quickQuestions-container">
-          <Typography variant="p" component="p">
-            Equation:
-          </Typography>
-          {this.state.question && <h1>{this.state.question.question}</h1>}
-          <Typography variant="p" component="p">
-            Answer:
-          </Typography>
-          {this.state.question && <h1>{this.state.question.answer}</h1>}
+          <Wrapper>
+            <Typography variant="p" component="p">
+              Equation:
+            </Typography>
+            {this.state.question && <h1>{this.state.question.question}</h1>}
+            <Typography variant="p" component="p">
+              Answer:
+            </Typography>
+            {this.state.question && <h1>{this.state.question.answer}</h1>}
+          </Wrapper>
         </Paper>
+
         <br />
         <Button
           variant="contained"
@@ -72,7 +83,7 @@ class QuickQuestion extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    question: state.question
+    questions: state.questions
   };
 };
 

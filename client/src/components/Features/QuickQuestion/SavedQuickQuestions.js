@@ -1,13 +1,25 @@
-import React from 'react';
-import styled from 'styled-components';
-import './QuickQuestion.css';
-import axios from 'axios';
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
 import {
   addQuestionToWorksheetdata,
   deleteQuestionToWorksheetdata,
   deleteQuestionToSaved
-} from '../../../redux/actions';
+} from "../../../redux/actions";
+import Button from "@material-ui/core/Button";
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
+import DeleteOutlinedIcon from "@material-ui/icons/DeleteOutlined";
+import styled from "styled-components";
+
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+`;
+
+const Flex = styled.div`
+  width: 100px;
+`;
 
 const SavedQuickQuestion = props => {
   const handleClickAdd = question => {
@@ -18,43 +30,51 @@ const SavedQuickQuestion = props => {
     props.deleteQuestionToWorksheetdata(question);
   };
 
-  const StyledUl = styled.ul({
-    width: '120px',
-    height: '120px',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    position: 'relative',
-    paddingTop: '25px'
-  });
-
-  const StyledButton = styled.button({
-    position: 'absolute',
-    top: 5,
-    right: 5,
-    color: 'red',
-    border: '1px sold red',
-    backgroundColor: 'transparent'
-  });
-
   const handleRemoveFromSaved = question => {
     props.deleteQuestionToSaved(question);
   };
 
   return (
     <div>
+      <Typography variant="h4" component="h4">
+        Saved Equations
+      </Typography>
       {props.question.map(e => {
         return (
           <div>
-            <StyledUl>
-              <StyledButton onClick={() => handleRemoveFromSaved(e)}>
-                x
-              </StyledButton>
-              <div>{e.question}</div>
-              <div>{e.answer}</div>
-              <button onClick={() => handleClickAdd(e)}>Add</button>
-              <button onClick={() => handleClickDelete(e)}>Remove</button>
-            </StyledUl>
+            <Paper>
+              <Wrapper>
+                
+                  <br />
+
+                  <Flex><div>{e.question}</div></Flex>
+                  <Flex><div>{e.answer}</div></Flex>
+
+                  <br />
+                
+                <div>
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    onClick={() => handleClickAdd(e)}
+                  >
+                    +
+                  </Button>
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    onClick={() => handleClickDelete(e)}
+                  >
+                    -
+                  </Button>
+                  <Button variant="contained" color="secondary" size="xs">
+                    <DeleteOutlinedIcon
+                      onClick={() => handleRemoveFromSaved(e)}
+                    />
+                  </Button>
+                </div>
+              </Wrapper>
+            </Paper>
           </div>
         );
       })}

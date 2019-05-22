@@ -66,17 +66,13 @@ class WorksheetForm extends React.Component {
   };
 
   printDocument = () => {
-
     window.html2canvas = html2canvas;
     let equationWidth = document.querySelector('#equation-data')
-
     let doc = new jsPDF();
     let elWidth = document.querySelector('#divToPrint').offSetWidth;
     doc.html(document.querySelector('#divToPrint'), {
       html2canvas: {
         scale: .28,
-
-
       },
       callback: function (doc) {
         console.log(doc);
