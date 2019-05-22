@@ -11,6 +11,8 @@ import {
 } from "../../../../../redux/actions";
 import { connect } from "react-redux";
 import Typography from "@material-ui/core/Typography";
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
 
 class WorksheetForm extends React.Component {
   constructor() {
@@ -59,6 +61,23 @@ class WorksheetForm extends React.Component {
     await this.props.saveWorksheet(question, this.props.userName);
     axios.post("worksheets", {
       data: question
+    });
+  };
+
+  printDocument = () => {
+    window.html2canvas = html2canvas;
+
+    let doc = new jsPDF();
+    let elWidth = document.querySelector("#divToPrint").offSetWidth;
+    doc.html(document.querySelector("#divToPrint"), {
+      html2canvas: {
+        scale: .28
+
+      },
+      callback: function(doc) {
+        console.log(doc);
+        doc.save();
+      }
     });
   };
 
