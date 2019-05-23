@@ -6,6 +6,8 @@ import WorksheetData from "../../Worksheet/WorksheetForm/WorksheetData";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import styled from "styled-components";
+import jsPDF from "jspdf";
+import html2canvas from 'html2canvas'
 
 const Wrapper = styled.div``;
 
@@ -54,6 +56,22 @@ class HistoryWorksheetForm extends React.Component {
     const { question } = this.state;
     this.props.saveWorksheet(question);
   };
+
+  printDocument = () => {
+    window.html2canvas = html2canvas;
+    let equationWidth = document.querySelector('#equation-data')
+    let doc = new jsPDF();
+    let elWidth = document.querySelector('#divToPrint').offSetWidth;
+    doc.html(document.querySelector('#divToPrint'), {
+      html2canvas: {
+        scale: .28,
+      },
+      callback: function (doc) {
+        console.log(doc);
+        doc.save();
+      }
+    })
+  }
 
   render() {
     return (

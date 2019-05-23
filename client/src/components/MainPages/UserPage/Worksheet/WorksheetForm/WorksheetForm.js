@@ -1,9 +1,12 @@
-import React from "react";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import axios from "axios";
-import WorksheetData from "./WorksheetData";
-import SavedQuickQuestions from "../../../../Features/QuickQuestion/SavedQuickQuestions";
+import React from 'react';
+import './WorksheetForm.css';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import axios from 'axios';
+import WorksheetData from './WorksheetData';
+import jsPDF from "jspdf";
+import html2canvas from 'html2canvas'
+import SavedQuickQuestions from '../../../../Features/QuickQuestion/SavedQuickQuestions';
 import {
   saveWorksheet,
   worksheetData,
@@ -38,7 +41,7 @@ class WorksheetForm extends React.Component {
   getEquations = () => {
     return axios.get(
       `/slope_intercept?min=${this.state.min}&max=${
-        this.state.max
+      this.state.max
       }&numOfQuestions=${this.state.numOfQuestions}`
     );
   };
@@ -59,7 +62,7 @@ class WorksheetForm extends React.Component {
   handleSaveWorksheet = async () => {
     const { question } = this.props;
     await this.props.saveWorksheet(question, this.props.userName);
-    axios.post("worksheets", {
+    axios.post('worksheets', {
       data: question
     });
   };
@@ -67,19 +70,19 @@ class WorksheetForm extends React.Component {
   printDocument = () => {
     window.html2canvas = html2canvas;
 
+    let equationWidth = document.querySelector('#equation-data')
     let doc = new jsPDF();
-    let elWidth = document.querySelector("#divToPrint").offSetWidth;
-    doc.html(document.querySelector("#divToPrint"), {
+    let elWidth = document.querySelector('#divToPrint').offSetWidth;
+    doc.html(document.querySelector('#divToPrint'), {
       html2canvas: {
-        scale: .28
-
+        scale: .28,
       },
-      callback: function(doc) {
+      callback: function (doc) {
         console.log(doc);
         doc.save();
       }
-    });
-  };
+    })
+  }
 
   render() {
     return (
@@ -150,7 +153,6 @@ class WorksheetForm extends React.Component {
         <Typography variant="h4" component="h4">
           WorkSheet Section
         </Typography>
-        <br />
         <Button
           variant="contained"
           color="secondary"
@@ -172,13 +174,12 @@ class WorksheetForm extends React.Component {
         <Button
           variant="contained"
           onClick={this.handleSaveWorksheet}
-          color="secondary"
           className="submit-btn"
           type="submit"
         >
           save
         </Button>
-        <div id="divToPrint" className="Worksheet">
+        <div id="divToPrint" className="Worksheet" >
           <div className="equation-container">
             {this.props.question.map((e, i) => (
               <WorksheetData
