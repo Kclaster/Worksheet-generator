@@ -11,9 +11,11 @@ import {
   saveWorksheet,
   worksheetData,
   helperSavePopulatedQuestionArr
-} from '../../../../../redux/actions';
-import { connect } from 'react-redux';
-import Typography from '@material-ui/core/Typography';
+} from "../../../../../redux/actions";
+import { connect } from "react-redux";
+import Typography from "@material-ui/core/Typography";
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
 
 class WorksheetForm extends React.Component {
   constructor() {
@@ -67,6 +69,7 @@ class WorksheetForm extends React.Component {
 
   printDocument = () => {
     window.html2canvas = html2canvas;
+
     let equationWidth = document.querySelector('#equation-data')
     let doc = new jsPDF();
     let elWidth = document.querySelector('#divToPrint').offSetWidth;

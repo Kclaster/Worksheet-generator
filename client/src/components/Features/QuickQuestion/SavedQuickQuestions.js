@@ -44,14 +44,14 @@ const SavedQuickQuestion = props => {
           <div>
             <Paper>
               <Wrapper>
-                
-                  <br />
-
-                  <Flex><div>{e.question}</div></Flex>
-                  <Flex><div>{e.answer}</div></Flex>
-
-                  <br />
-                
+                <br />
+                <Flex>
+                  <div>{e.question}</div>
+                </Flex>
+                <Flex>
+                  <div>{e.answer}</div>
+                </Flex>
+                <br />
                 <div>
                   <Button
                     variant="contained"
