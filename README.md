@@ -4,13 +4,16 @@ The Worksheet Generator app is similar to a time machine for math teachers. Teac
 
 Our app generates random math questions and answers. It allows users to save propblems, worksheets, create answer sheets with a couple of clicks.
 
+
 Technology used:
--React
--Redux
--MySQL
--Material UI
--Styled Components
--Nodejs
--Javascript
--Postman
--Github
+*React
+*Redux
+*MySQL
+*Material UI
+*Styled Components
+*Nodejs
+*Javascript
+*Postman
+*Github
+
+Link: https://mysterious-forest-89596.herokuapp.com/
