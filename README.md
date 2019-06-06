@@ -6,14 +6,14 @@ Our app generates random math questions and answers. It allows users to save pro
 
 
 Technology used:
-*React
-*Redux
-*MySQL
-*Material UI
-*Styled Components
-*Nodejs
-*Javascript
-*Postman
-*Github
+* React
+* Redux
+* MySQL
+* Material UI
+* Styled Components
+* Nodejs
+* Javascript
+* Postman
+* Github
 
 Link: https://mysterious-forest-89596.herokuapp.com/
